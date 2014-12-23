@@ -1,0 +1,35 @@
+{
+    "name": "elliotchance/independentreserve",
+    "type": "library",
+    "description": "API for independentreserve.com.",
+    "keywords": [
+        "independentreserve",
+        "independent reserve"
+    ],
+    "homepage": "https://github.com/elliotchance/independentreserve",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Elliot Chance",
+            "email": "elliotchance@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.9",
+        "guzzlehttp/guzzle": "~5.1"
+    },
+    "require-dev": {
+        "elliotchance/concise": "~1.7",
+        "phpunit/phpunit": ">= 4.0",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "": [
+                "tests/integration/",
+                "tests/unit/",
+                "src/"
+            ]
+        }
+    }
+}
