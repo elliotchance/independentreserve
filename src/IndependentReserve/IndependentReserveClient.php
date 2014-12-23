@@ -30,12 +30,14 @@ class IndependentReserveClient
     }
 
     /**
-     * @param string $endpoint
+     * @param string $endpoint The public endpoint name.
+     * @param array $params Optional named parameters.
      * @return mixed
      */
-    protected function getEndpoint($endpoint)
+    protected function getEndpoint($endpoint, array $params = array())
     {
-        return $this->get("https://api.independentreserve.com/Public/$endpoint");
+        $query = http_build_query($params);
+        return $this->get("https://api.independentreserve.com/Public/$endpoint?$query");
     }
 
     /**
@@ -76,5 +78,13 @@ class IndependentReserveClient
     public function getValidMarketOrderTypes()
     {
         return $this->getEndpoint('GetValidMarketOrderTypes');
+    }
+
+    public function getMarketSummary($primaryCurrencyCode, $secondaryCurrencyCode)
+    {
+        return $this->getEndpoint('GetMarketSummary', array(
+            'primaryCurrencyCode' => $primaryCurrencyCode,
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+        ));
     }
 }
