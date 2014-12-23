@@ -28,4 +28,10 @@ class IndependentReserveClientIntegrationTest extends TestCase
         $currencyCodes = $this->client->getValidSecondaryCurrencyCodes();
         $this->assert($currencyCodes, has_value, "Usd");
     }
+
+    public function testGetValidLimitOrderTypes()
+    {
+        $orderTypes = $this->client->getGetValidLimitOrderTypes();
+        $this->assert($orderTypes, equals, ["LimitBid","LimitOffer"]);
+    }
 }

@@ -30,13 +30,22 @@ class IndependentReserveClient
     }
 
     /**
+     * @param string $endpoint
+     * @return mixed
+     */
+    protected function getEndpoint($endpoint)
+    {
+        return $this->get("https://api.independentreserve.com/Public/$endpoint");
+    }
+
+    /**
      * Returns a list of valid primary currency codes. These are the digital currencies which can be
      * traded on Independent Reserve.
      * @return array
      */
     public function getValidPrimaryCurrencyCodes()
     {
-        return $this->get('https://api.independentreserve.com/Public/GetValidPrimaryCurrencyCodes');
+        return $this->getEndpoint('GetValidPrimaryCurrencyCodes');
     }
 
     /**
@@ -46,6 +55,16 @@ class IndependentReserveClient
      */
     public function getValidSecondaryCurrencyCodes()
     {
-        return $this->get('https://api.independentreserve.com/Public/GetValidSecondaryCurrencyCodes');
+        return $this->getEndpoint('GetValidSecondaryCurrencyCodes');
+    }
+
+    /**
+     * Returns a list of valid limit order types which can be placed onto the Independent Reserve
+     * exchange platform.
+     * @return array
+     */
+    public function getGetValidLimitOrderTypes()
+    {
+        return $this->getEndpoint('GetValidLimitOrderTypes');
     }
 }
