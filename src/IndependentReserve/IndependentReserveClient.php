@@ -67,4 +67,14 @@ class IndependentReserveClient
     {
         return $this->getEndpoint('GetValidLimitOrderTypes');
     }
+
+    /**
+     * Returns a list of valid market order types which can be placed onto the Independent Reserve
+     * exchange platform.
+     * @return array
+     */
+    public function getValidMarketOrderTypes()
+    {
+        return $this->getEndpoint('GetValidMarketOrderTypes');
+    }
 }

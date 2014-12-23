@@ -34,4 +34,10 @@ class IndependentReserveClientIntegrationTest extends TestCase
         $orderTypes = $this->client->getGetValidLimitOrderTypes();
         $this->assert($orderTypes, equals, ["LimitBid","LimitOffer"]);
     }
+
+    public function testGetValidMarketOrderTypes()
+    {
+        $orderTypes = $this->client->getValidMarketOrderTypes();
+        $this->assert($orderTypes, equals, ["MarketBid","MarketOffer"]);
+    }
 }
