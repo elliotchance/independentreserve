@@ -80,6 +80,16 @@ class IndependentReserveClient
         return $this->getEndpoint('GetValidMarketOrderTypes');
     }
 
+    /**
+     * Returns a current snapshot of the Independent Reserve market for a given currency pair.
+     * @param string $primaryCurrencyCode The digital currency for which to retrieve market summary.
+     *        Must be a valid primary currency, which can be checked via the
+     *        getValidPrimaryCurrencyCodes() method.
+     * @param string $secondaryCurrencyCode The fiat currency in which to retrieve market summary.
+     *        Must be a valid secondary currency, which can be checked via the
+     *        getValidSecondaryCurrencyCodes() method.
+     * @return object
+     */
     public function getMarketSummary($primaryCurrencyCode, $secondaryCurrencyCode)
     {
         return $this->getEndpoint('GetMarketSummary', array(

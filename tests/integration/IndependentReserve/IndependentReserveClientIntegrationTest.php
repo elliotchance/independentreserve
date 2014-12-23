@@ -20,13 +20,13 @@ class IndependentReserveClientIntegrationTest extends TestCase
     public function testGetValidPrimaryCurrencyCodes()
     {
         $currencyCodes = $this->client->getValidPrimaryCurrencyCodes();
-        $this->assert($currencyCodes, equals, ["Xbt"]);
+        $this->assert($currencyCodes, equals, [Currency::XBT]);
     }
 
     public function testGetValidSecondaryCurrencyCodes()
     {
         $currencyCodes = $this->client->getValidSecondaryCurrencyCodes();
-        $this->assert($currencyCodes, has_value, "Usd");
+        $this->assert($currencyCodes, has_value, Currency::USD);
     }
 
     public function testGetValidLimitOrderTypes()
@@ -43,7 +43,7 @@ class IndependentReserveClientIntegrationTest extends TestCase
 
     public function testGetMarketSummary()
     {
-        $summary = $this->client->getMarketSummary("Xbt", "Usd");
+        $summary = $this->client->getMarketSummary(Currency::XBT, Currency::USD);
         $this->assert($summary, is_an_object);
 
         $this->verify($summary->DayHighestPrice, is_greater_than, 0);
@@ -53,8 +53,8 @@ class IndependentReserveClientIntegrationTest extends TestCase
         $this->verify($summary->CurrentLowestOfferPrice, is_greater_than, 0);
         $this->verify($summary->CurrentHighestBidPrice, is_greater_than, 0);
         $this->verify($summary->LastPrice, is_greater_than, 0);
-        $this->verify($summary->PrimaryCurrencyCode, equals, 'Xbt');
-        $this->verify($summary->SecondaryCurrencyCode, equals, 'Usd');
+        $this->verify($summary->PrimaryCurrencyCode, equals, Currency::XBT);
+        $this->verify($summary->SecondaryCurrencyCode, equals, Currency::USD);
         $this->verify(date, $summary->CreatedTimestampUtc, is_after, time() - 1);
     }
 }

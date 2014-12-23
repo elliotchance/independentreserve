@@ -15,4 +15,9 @@ class CurrencyTest extends TestCase
     {
         $this->assert(Currency::USD, equals, 'Usd');
     }
+
+    public function testAud()
+    {
+        $this->assert(Currency::AUD, equals, 'Aud');
+    }
 }

@@ -13,4 +13,9 @@ class Currency
      * US Dollar.
      */
     const USD = 'Usd';
+
+    /**
+     * Australian Dollar.
+     */
+    const AUD = 'Aud';
 }
