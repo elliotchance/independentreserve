@@ -4,7 +4,9 @@
     "description": "API for independentreserve.com.",
     "keywords": [
         "independentreserve",
-        "independent reserve"
+        "independent reserve",
+        "bitcoin",
+        "xtc"
     ],
     "homepage": "https://github.com/elliotchance/independentreserve",
     "license": "MIT",
@@ -15,12 +17,12 @@
         }
     ],
     "require": {
-        "php": ">=5.3.9",
+        "php": ">=5.4",
         "guzzlehttp/guzzle": "~5.1"
     },
     "require-dev": {
         "elliotchance/concise": "~1.7",
-        "phpunit/phpunit": ">= 4.0",
+        "phpunit/phpunit": ">=4.0",
         "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
