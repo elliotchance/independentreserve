@@ -46,6 +46,6 @@ class OrderBook extends AbstractObject
      */
     public function getSellOrders()
     {
-        return [];
+        return [ Order::createFromObject($this->object->SellOrders[0]) ];
     }
 }
