@@ -85,4 +85,13 @@ class MarketSummary
     {
         return $this->object->DayVolumeXbt;
     }
+
+    /**
+     * Last traded price.
+     * @return double
+     */
+    public function getLastPrice()
+    {
+        return $this->object->LastPrice;
+    }
 }
