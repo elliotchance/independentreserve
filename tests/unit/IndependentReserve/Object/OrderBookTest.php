@@ -18,12 +18,12 @@ class OrderBookTest extends TestCase
 
         $obj = (object)[
             "BuyOrders" => [
-                [
+                (object)[
                     "OrderType" => "LimitBid",
                     "Price" => 497.02000000,
                     "Volume" => 0.01000000
                 ],
-                [
+                (object)[
                     "OrderType" => "LimitBid",
                     "Price" => 490.00000000,
                     "Volume" => 1.00000000
@@ -33,12 +33,12 @@ class OrderBookTest extends TestCase
             "PrimaryCurrencyCode" => "Xbt",
             "SecondaryCurrencyCode" => "Usd",
             "SellOrders" => [
-                [
+                (object)[
                     "OrderType" => "LimitOffer",
                     "Price" => 500.00000000,
                     "Volume" => 1.00000000
                 ],
-                [
+                (object)[
                     "OrderType" => "LimitOffer",
                     "Price" => 505.00000000,
                     "Volume" => 1.00000000
@@ -77,5 +77,11 @@ class OrderBookTest extends TestCase
     public function testSellOrdersIsAnArray()
     {
         $this->assert($this->order->getSellOrders(), is_an_array);
+    }
+
+    public function testFactorySetsSingleBuyOrder()
+    {
+        $buyOrders = $this->order->getBuyOrders();
+        $this->assert($buyOrders[0], instance_of, '\IndependentReserve\Object\Order');
     }
 }
