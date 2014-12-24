@@ -27,7 +27,7 @@ class MarketSummary
      * UTC timestamp of when the market summary was generated.
      * @return DateTime
      */
-    public function getCreatedTimestampUtc()
+    public function getCreatedTimestamp()
     {
         return new DateTime($this->object->CreatedTimestampUtc);
     }
@@ -57,5 +57,14 @@ class MarketSummary
     public function getDayAveragePrice()
     {
         return $this->object->DayAvgPrice;
+    }
+
+    /**
+     * Highest traded price over last 24 hours.
+     * @return double
+     */
+    public function getDayHighestPrice()
+    {
+        return $this->object->DayHighestPrice;
     }
 }
