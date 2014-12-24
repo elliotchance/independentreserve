@@ -90,4 +90,10 @@ class OrderBookTest extends TestCase
         $sellOrders = $this->order->getSellOrders();
         $this->assert($sellOrders[0], instance_of, '\IndependentReserve\Object\Order');
     }
+
+    public function testFactorySetsAllBuyOrders()
+    {
+        $buyOrders = $this->order->getBuyOrders();
+        $this->assert($buyOrders[1], instance_of, '\IndependentReserve\Object\Order');
+    }
 }

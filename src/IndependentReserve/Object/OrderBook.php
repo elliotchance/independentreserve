@@ -3,6 +3,7 @@
 namespace IndependentReserve\Object;
 
 use DateTime;
+use stdClass;
 
 class OrderBook extends AbstractObject
 {
@@ -38,7 +39,9 @@ class OrderBook extends AbstractObject
      */
     public function getBuyOrders()
     {
-        return [ Order::createFromObject($this->object->BuyOrders[0]) ];
+        return array_map(function (stdClass $object) {
+            return Order::createFromObject($object);
+        }, $this->object->BuyOrders);
     }
 
     /**
