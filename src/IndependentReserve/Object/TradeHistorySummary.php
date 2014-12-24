@@ -41,4 +41,13 @@ class TradeHistorySummary extends AbstractObject
     {
         return $this->object->NumberOfHoursInThePastToRetrieve;
     }
+
+    /**
+     * List of hourly summary blocks.
+     * @return array
+     */
+    public function getHistorySummaryItems()
+    {
+        return [];
+    }
 }

@@ -64,4 +64,9 @@ class TradeHistorySummaryTest extends TestCase
     {
         $this->assert($this->tradeHistorySummary->getNumberOfHoursInThePastToRetrieve(), equals, 1);
     }
+
+    public function testHistorySummaryItemsMustBeAnArray()
+    {
+        $this->assert($this->tradeHistorySummary->getHistorySummaryItems(), is_an_array);
+    }
 }
