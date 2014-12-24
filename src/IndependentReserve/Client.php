@@ -112,6 +112,9 @@ class Client
      */
     public function getOrderBook($primaryCurrencyCode, $secondaryCurrencyCode)
     {
-        return new OrderBook();
+        return OrderBook::createFromObject($this->getEndpoint('GetOrderBook', [
+            'primaryCurrencyCode' => $primaryCurrencyCode,
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+        ]));
     }
 }

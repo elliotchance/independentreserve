@@ -62,5 +62,11 @@ class ClientIntegrationTest extends TestCase
     {
         $orderBook = $this->client->getOrderBook(Currency::XBT, Currency::USD);
         $this->assert($orderBook, instance_of, '\IndependentReserve\Object\OrderBook');
+
+        $this->verify(date, $orderBook->getCreatedTimestamp(), is_after, time() - 5);
+        $this->verify(count($orderBook->getBuyOrders()), greater_than, 0);
+        $this->verify(count($orderBook->getSellOrders()), greater_than, 0);
+        $this->verify($orderBook->getPrimaryCurrencyCode(), equals, Currency::XBT);
+        $this->verify($orderBook->getSecondaryCurrencyCode(), equals, Currency::USD);
     }
 }
