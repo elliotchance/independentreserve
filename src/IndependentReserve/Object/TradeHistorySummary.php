@@ -48,6 +48,6 @@ class TradeHistorySummary extends AbstractObject
      */
     public function getHistorySummaryItems()
     {
-        return [];
+        return [ HistorySummaryItem::createFromObject($this->object->HistorySummaryItems[0]) ];
     }
 }

@@ -69,4 +69,10 @@ class TradeHistorySummaryTest extends TestCase
     {
         $this->assert($this->tradeHistorySummary->getHistorySummaryItems(), is_an_array);
     }
+
+    public function testFactorySetsSingleHistorySummaryItem()
+    {
+        $items = $this->tradeHistorySummary->getHistorySummaryItems();
+        $this->assert($items[0], instance_of, '\IndependentReserve\Object\HistorySummaryItem');
+    }
 }
