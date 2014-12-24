@@ -3,6 +3,7 @@
 namespace IndependentReserve\Object;
 
 use DateTime;
+use stdClass;
 
 class TradeHistorySummary extends AbstractObject
 {
@@ -48,6 +49,8 @@ class TradeHistorySummary extends AbstractObject
      */
     public function getHistorySummaryItems()
     {
-        return [ HistorySummaryItem::createFromObject($this->object->HistorySummaryItems[0]) ];
+        return array_map(function (stdClass $object) {
+            return HistorySummaryItem::createFromObject($object);
+        }, $this->object->HistorySummaryItems);
     }
 }

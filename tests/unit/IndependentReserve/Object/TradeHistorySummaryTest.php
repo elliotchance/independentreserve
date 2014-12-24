@@ -30,7 +30,19 @@ class TradeHistorySummaryTest extends TestCase
                     "OpeningSecondaryCurrencyPrice" => 510.00000000,
                     "PrimaryCurrencyVolume" => 0.00000000,
                     "SecondaryCurrencyVolume" => 0.00000000,
-                ]
+                ],
+                (object)[
+                    "AverageSecondaryCurrencyPrice" => 510.00000000,
+                    "ClosingSecondaryCurrencyPrice" => 510.00000000,
+                    "StartTimestampUtc" => "2014-08-04T09:00:00Z",
+                    "EndTimestampUtc" => "2014-08-04T10:00:00Z",
+                    "HighestSecondaryCurrencyPrice" => 510.00000000,
+                    "LowestSecondaryCurrencyPrice" => 510.00000000,
+                    "NumberOfTrades" => 0,
+                    "OpeningSecondaryCurrencyPrice" => 510.00000000,
+                    "PrimaryCurrencyVolume" => 0.00000000,
+                    "SecondaryCurrencyVolume" => 0.00000000,
+                ],
             ],
             "NumberOfHoursInThePastToRetrieve" => 1,
             "PrimaryCurrencyCode" => "Xbt",
@@ -74,5 +86,11 @@ class TradeHistorySummaryTest extends TestCase
     {
         $items = $this->tradeHistorySummary->getHistorySummaryItems();
         $this->assert($items[0], instance_of, '\IndependentReserve\Object\HistorySummaryItem');
+    }
+
+    public function testFactorySetsAllHistorySummaryItems()
+    {
+        $items = $this->tradeHistorySummary->getHistorySummaryItems();
+        $this->assert($items[1], instance_of, '\IndependentReserve\Object\HistorySummaryItem');
     }
 }
