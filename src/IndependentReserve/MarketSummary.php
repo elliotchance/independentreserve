@@ -67,4 +67,13 @@ class MarketSummary
     {
         return $this->object->DayHighestPrice;
     }
+
+    /**
+     * Lowest traded price over last 24 hours.
+     * @return double
+     */
+    public function getDayLowestPrice()
+    {
+        return $this->object->DayLowestPrice;
+    }
 }

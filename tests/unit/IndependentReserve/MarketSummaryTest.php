@@ -22,7 +22,7 @@ class MarketSummaryTest extends TestCase
             "CurrentLowestOfferPrice" => 1001.00000000,
             "DayAvgPrice" => 510.000000,
             "DayHighestPrice" => 515.00000000,
-            "DayLowestPrice" => 510.00000000,
+            "DayLowestPrice" => 509.00000000,
             "DayVolumeXbt" => 1.00000000,
             "LastPrice" => 510.00000000,
             "PrimaryCurrencyCode" => "Xbt",
@@ -60,5 +60,10 @@ class MarketSummaryTest extends TestCase
     public function testFactorySetsDayHighestPrice()
     {
         $this->assert($this->marketSummary->getDayHighestPrice(), equals, 515);
+    }
+
+    public function testFactorySetsDayLowestPrice()
+    {
+        $this->assert($this->marketSummary->getDayLowestPrice(), equals, 509);
     }
 }
