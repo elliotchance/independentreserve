@@ -59,4 +59,9 @@ class TradeHistorySummaryTest extends TestCase
     {
         $this->assert($this->tradeHistorySummary->getSecondaryCurrencyCode(), equals, 'Usd');
     }
+
+    public function testFactorySetsNumberOfHoursInThePastToRetrieve()
+    {
+        $this->assert($this->tradeHistorySummary->getNumberOfHoursInThePastToRetrieve(), equals, 1);
+    }
 }

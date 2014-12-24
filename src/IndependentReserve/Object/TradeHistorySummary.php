@@ -32,4 +32,13 @@ class TradeHistorySummary extends AbstractObject
     {
         return $this->object->SecondaryCurrencyCode;
     }
+
+    /**
+     * Number of past hours being returned.
+     * @return int
+     */
+    public function getNumberOfHoursInThePastToRetrieve()
+    {
+        return $this->object->NumberOfHoursInThePastToRetrieve;
+    }
 }
