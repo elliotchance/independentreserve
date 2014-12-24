@@ -2,10 +2,12 @@
 
 namespace IndependentReserve;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
+use IndependentReserve\Object\MarketSummary;
+use IndependentReserve\Object\OrderBook;
 
-class IndependentReserveClient
+class Client
 {
     /**
      * @var Client
@@ -14,7 +16,7 @@ class IndependentReserveClient
 
     public function __construct()
     {
-        $this->client = new Client();
+        $this->client = new GuzzleClient();
     }
 
     /**
@@ -96,5 +98,20 @@ class IndependentReserveClient
             'primaryCurrencyCode' => $primaryCurrencyCode,
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
         ]));
+    }
+
+    /**
+     * Returns the Order Book for a given currency pair.
+     * @param string $primaryCurrencyCode The digital currency for which to retrieve market summary.
+     *        Must be a valid primary currency, which can be checked via the
+     *        getValidPrimaryCurrencyCodes() method.
+     * @param string $secondaryCurrencyCode The fiat currency in which to retrieve market summary.
+     *        Must be a valid secondary currency, which can be checked via the
+     *        getValidSecondaryCurrencyCodes() method.
+     * @return OrderBook
+     */
+    public function getOrderBook($primaryCurrencyCode, $secondaryCurrencyCode)
+    {
+        return new OrderBook();
     }
 }

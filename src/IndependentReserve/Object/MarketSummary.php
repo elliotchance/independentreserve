@@ -1,6 +1,6 @@
 <?php
 
-namespace IndependentReserve;
+namespace IndependentReserve\Object;
 
 use DateTime;
 

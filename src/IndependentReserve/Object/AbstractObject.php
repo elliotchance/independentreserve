@@ -1,6 +1,6 @@
 <?php
 
-namespace IndependentReserve;
+namespace IndependentReserve\Object;
 
 use stdClass;
 
@@ -13,7 +13,7 @@ abstract class AbstractObject
 
     /**
      * @param stdClass $object Original object from the API to be translated.
-     * @return BuyOrder
+     * @return AbstractObject
      */
     public static function createFromObject(stdClass $object)
     {

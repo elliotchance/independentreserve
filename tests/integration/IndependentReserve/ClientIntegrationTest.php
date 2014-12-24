@@ -4,17 +4,17 @@ namespace IndependentReserve;
 
 use Concise\TestCase;
 
-class IndependentReserveClientIntegrationTest extends TestCase
+class ClientIntegrationTest extends TestCase
 {
     /**
-     * @var IndependentReserveClient
+     * @var Client
      */
     protected $client;
 
     public function setUp()
     {
         parent::setUp();
-        $this->client = new IndependentReserveClient();
+        $this->client = new Client();
     }
 
     public function testGetValidPrimaryCurrencyCodes()
@@ -44,7 +44,7 @@ class IndependentReserveClientIntegrationTest extends TestCase
     public function testGetMarketSummary()
     {
         $summary = $this->client->getMarketSummary(Currency::XBT, Currency::USD);
-        $this->assert($summary, instance_of, '\IndependentReserve\MarketSummary');
+        $this->assert($summary, instance_of, '\IndependentReserve\Object\MarketSummary');
 
         $this->verify($summary->getDayHighestPrice(), is_greater_than, 0);
         $this->verify($summary->getDayLowestPrice(), is_greater_than, 0);
@@ -56,5 +56,11 @@ class IndependentReserveClientIntegrationTest extends TestCase
         $this->verify($summary->getPrimaryCurrencyCode(), equals, Currency::XBT);
         $this->verify($summary->getSecondaryCurrencyCode(), equals, Currency::USD);
         $this->verify(date, $summary->getCreatedTimestamp(), is_after, time() - 5);
+    }
+
+    public function testGetOrderBook()
+    {
+        $orderBook = $this->client->getOrderBook(Currency::XBT, Currency::USD);
+        $this->assert($orderBook, instance_of, '\IndependentReserve\Object\OrderBook');
     }
 }
