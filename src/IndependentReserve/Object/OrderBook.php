@@ -32,4 +32,12 @@ class OrderBook extends AbstractObject
     {
         return $this->object->SecondaryCurrencyCode;
     }
+
+    /**
+     * @return array
+     */
+    public function getBuyOrders()
+    {
+        return [];
+    }
 }

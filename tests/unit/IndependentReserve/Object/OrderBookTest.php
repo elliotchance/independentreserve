@@ -68,4 +68,9 @@ class OrderBookTest extends TestCase
     {
         $this->assert($this->order->getSecondaryCurrencyCode(), equals, 'Usd');
     }
+
+    public function testBuyOrdersIsAnArray()
+    {
+        $this->assert($this->order->getBuyOrders(), is_an_array);
+    }
 }
