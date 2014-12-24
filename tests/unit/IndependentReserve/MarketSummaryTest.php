@@ -51,4 +51,9 @@ class MarketSummaryTest extends TestCase
     {
         $this->assert($this->marketSummary->getCurrentLowestOfferPrice(), equals, 1001);
     }
+
+    public function testFactorySetsDayAveragePrice()
+    {
+        $this->assert($this->marketSummary->getDayAveragePrice(), equals, 510);
+    }
 }

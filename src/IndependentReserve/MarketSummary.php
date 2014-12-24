@@ -49,4 +49,13 @@ class MarketSummary
     {
         return $this->object->CurrentLowestOfferPrice;
     }
+
+    /**
+     * Weighted average traded price over last 24 hours.
+     * @return double
+     */
+    public function getDayAveragePrice()
+    {
+        return $this->object->DayAvgPrice;
+    }
 }
