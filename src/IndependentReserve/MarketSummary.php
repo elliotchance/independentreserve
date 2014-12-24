@@ -8,16 +8,9 @@ use stdClass;
 class MarketSummary
 {
     /**
-     * UTC timestamp of when the market summary was generated.
-     * @var DateTime
+     * @var object
      */
-    protected $createdTimestampUtc;
-
-    /**
-     * Current highest bid on order book.
-     * @var double
-     */
-    protected $currentHighestBidPrice;
+    protected $object;
 
     /**
      * @param stdClass $object Original object from the API to be translated.
@@ -26,8 +19,7 @@ class MarketSummary
     public static function createFromObject(stdClass $object)
     {
         $marketSummary = new self();
-        $marketSummary->createdTimestampUtc = new DateTime($object->CreatedTimestampUtc);
-        $marketSummary->currentHighestBidPrice = $object->CurrentHighestBidPrice;
+        $marketSummary->object = $object;
         return $marketSummary;
     }
 
@@ -37,7 +29,7 @@ class MarketSummary
      */
     public function getCreatedTimestampUtc()
     {
-        return $this->createdTimestampUtc;
+        return new DateTime($this->object->CreatedTimestampUtc);
     }
 
     /**
@@ -46,6 +38,15 @@ class MarketSummary
      */
     public function getCurrentHighestBidPrice()
     {
-        return $this->currentHighestBidPrice;
+        return $this->object->CurrentHighestBidPrice;
+    }
+
+    /**
+     * Current lowest offer on order book.
+     * @return float
+     */
+    public function getCurrentLowestOfferPrice()
+    {
+        return $this->object->CurrentLowestOfferPrice;
     }
 }

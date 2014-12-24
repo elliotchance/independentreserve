@@ -46,4 +46,9 @@ class MarketSummaryTest extends TestCase
     {
         $this->assert($this->marketSummary->getCurrentHighestBidPrice(), equals, 500);
     }
+
+    public function testFactorySetsCurrentLowestOfferPrice()
+    {
+        $this->assert($this->marketSummary->getCurrentLowestOfferPrice(), equals, 1001);
+    }
 }
