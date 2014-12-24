@@ -3,11 +3,19 @@
 namespace IndependentReserve;
 
 use Concise\TestCase;
+use DateTime;
 
 class MarketSummaryTest extends TestCase
 {
-    public function testCreatedTimestampUtcReturnsADateTime()
+    /**
+     * @var MarketSummary
+     */
+    protected $marketSummary;
+
+    public function setUp()
     {
+        parent::setUp();
+
         $obj = (object)[
             "CreatedTimestampUtc" => "2014-08-05T06:42:11.3032208Z",
             "CurrentHighestBidPrice" => 500.00000000,
@@ -21,7 +29,21 @@ class MarketSummaryTest extends TestCase
             "SecondaryCurrencyCode" => "Usd",
         ];
 
-        $marketSummary = MarketSummary::createFromObject($obj);
-        $this->assert($marketSummary->getCreatedTimestampUtc(), instance_of, '\DateTime');
+        $this->marketSummary = MarketSummary::createFromObject($obj);
+    }
+
+    public function testCreatedTimestampUtcReturnsADateTime()
+    {
+        $this->assert($this->marketSummary->getCreatedTimestampUtc(), instance_of, '\DateTime');
+    }
+
+    public function testFactorySetsCreatedTimestampUtc()
+    {
+        $this->assert($this->marketSummary->getCreatedTimestampUtc(), equals, new DateTime("2014-08-05T06:42:11.3032208Z"));
+    }
+
+    public function testFactorySetsCurrentHighestBidPrice()
+    {
+        $this->assert($this->marketSummary->getCurrentHighestBidPrice(), equals, 500);
     }
 }
