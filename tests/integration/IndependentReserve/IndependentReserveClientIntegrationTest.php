@@ -55,6 +55,6 @@ class IndependentReserveClientIntegrationTest extends TestCase
         $this->verify($summary->LastPrice, is_greater_than, 0);
         $this->verify($summary->PrimaryCurrencyCode, equals, Currency::XBT);
         $this->verify($summary->SecondaryCurrencyCode, equals, Currency::USD);
-        $this->verify(date, $summary->CreatedTimestampUtc, is_after, time() - 1);
+        $this->verify(date, $summary->CreatedTimestampUtc, is_after, time() - 5);
     }
 }
