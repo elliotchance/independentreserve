@@ -54,4 +54,9 @@ class TradeHistorySummaryTest extends TestCase
     {
         $this->assert($this->tradeHistorySummary->getPrimaryCurrencyCode(), equals, 'Xbt');
     }
+
+    public function testFactorySetsSecondaryCurrencyCode()
+    {
+        $this->assert($this->tradeHistorySummary->getSecondaryCurrencyCode(), equals, 'Usd');
+    }
 }
