@@ -5,10 +5,10 @@ namespace IndependentReserve;
 use Concise\TestCase;
 use DateTime;
 
-class BuyOrderTest extends TestCase
+class OrderTest extends TestCase
 {
     /**
-     * @var BuyOrder
+     * @var Order
      */
     protected $order;
 
@@ -22,7 +22,7 @@ class BuyOrderTest extends TestCase
             "Volume" => 0.01000000,
         ];
 
-        $this->order = BuyOrder::createFromObject($obj);
+        $this->order = Order::createFromObject($obj);
     }
 
     public function testFactorySetsOrderType()
@@ -33,5 +33,10 @@ class BuyOrderTest extends TestCase
     public function testFactorySetsPrice()
     {
         $this->assert($this->order->getPrice(), equals, 497.02);
+    }
+
+    public function testFactorySetsVolume()
+    {
+        $this->assert($this->order->getVolume(), equals, 0.01);
     }
 }

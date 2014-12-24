@@ -4,7 +4,7 @@ namespace IndependentReserve;
 
 use stdClass;
 
-class BuyOrder
+abstract class AbstractObject
 {
     /**
      * @var object
@@ -17,24 +17,8 @@ class BuyOrder
      */
     public static function createFromObject(stdClass $object)
     {
-        $buyOrder = new self();
+        $buyOrder = new static();
         $buyOrder->object = $object;
         return $buyOrder;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOrderType()
-    {
-        return $this->object->OrderType;
-    }
-
-    /**
-     * @return double
-     */
-    public function getPrice()
-    {
-        return $this->object->Price;
     }
 }

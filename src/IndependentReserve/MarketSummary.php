@@ -3,26 +3,9 @@
 namespace IndependentReserve;
 
 use DateTime;
-use stdClass;
 
-class MarketSummary
+class MarketSummary extends AbstractObject
 {
-    /**
-     * @var object
-     */
-    protected $object;
-
-    /**
-     * @param stdClass $object Original object from the API to be translated.
-     * @return MarketSummary
-     */
-    public static function createFromObject(stdClass $object)
-    {
-        $marketSummary = new self();
-        $marketSummary->object = $object;
-        return $marketSummary;
-    }
-
     /**
      * UTC timestamp of when the market summary was generated.
      * @return DateTime
