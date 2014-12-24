@@ -40,4 +40,12 @@ class OrderBook extends AbstractObject
     {
         return [];
     }
+
+    /**
+     * @return array
+     */
+    public function getSellOrders()
+    {
+        return [];
+    }
 }

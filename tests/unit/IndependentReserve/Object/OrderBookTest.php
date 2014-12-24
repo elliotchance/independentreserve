@@ -73,4 +73,9 @@ class OrderBookTest extends TestCase
     {
         $this->assert($this->order->getBuyOrders(), is_an_array);
     }
+
+    public function testSellOrdersIsAnArray()
+    {
+        $this->assert($this->order->getSellOrders(), is_an_array);
+    }
 }
