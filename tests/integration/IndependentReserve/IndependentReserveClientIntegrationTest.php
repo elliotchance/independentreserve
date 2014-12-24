@@ -44,17 +44,17 @@ class IndependentReserveClientIntegrationTest extends TestCase
     public function testGetMarketSummary()
     {
         $summary = $this->client->getMarketSummary(Currency::XBT, Currency::USD);
-        $this->assert($summary, is_an_object);
+        $this->assert($summary, instance_of, '\IndependentReserve\MarketSummary');
 
-        $this->verify($summary->DayHighestPrice, is_greater_than, 0);
-        $this->verify($summary->DayLowestPrice, is_greater_than, 0);
-        $this->verify($summary->DayAvgPrice, is_between, $summary->DayLowestPrice, 'and', $summary->DayHighestPrice);
-        $this->verify($summary->DayVolumeXbt, is_greater_than, 0);
-        $this->verify($summary->CurrentLowestOfferPrice, is_greater_than, 0);
-        $this->verify($summary->CurrentHighestBidPrice, is_greater_than, 0);
-        $this->verify($summary->LastPrice, is_greater_than, 0);
-        $this->verify($summary->PrimaryCurrencyCode, equals, Currency::XBT);
-        $this->verify($summary->SecondaryCurrencyCode, equals, Currency::USD);
-        $this->verify(date, $summary->CreatedTimestampUtc, is_after, time() - 5);
+        $this->verify($summary->getDayHighestPrice(), is_greater_than, 0);
+        $this->verify($summary->getDayLowestPrice(), is_greater_than, 0);
+        $this->verify($summary->getDayAveragePrice(), is_between, $summary->getDayLowestPrice(), 'and', $summary->getDayHighestPrice());
+        $this->verify($summary->getDayVolumeXbt(), is_greater_than, 0);
+        $this->verify($summary->getCurrentLowestOfferPrice(), is_greater_than, 0);
+        $this->verify($summary->getCurrentHighestBidPrice(), is_greater_than, 0);
+        $this->verify($summary->getLastPrice(), is_greater_than, 0);
+        $this->verify($summary->getPrimaryCurrencyCode(), equals, Currency::XBT);
+        $this->verify($summary->getSecondaryCurrencyCode(), equals, Currency::USD);
+        $this->verify(date, $summary->getCreatedTimestamp(), is_after, time() - 5);
     }
 }

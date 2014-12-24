@@ -88,13 +88,13 @@ class IndependentReserveClient
      * @param string $secondaryCurrencyCode The fiat currency in which to retrieve market summary.
      *        Must be a valid secondary currency, which can be checked via the
      *        getValidSecondaryCurrencyCodes() method.
-     * @return object
+     * @return MarketSummary
      */
     public function getMarketSummary($primaryCurrencyCode, $secondaryCurrencyCode)
     {
-        return $this->getEndpoint('GetMarketSummary', array(
+        return MarketSummary::createFromObject($this->getEndpoint('GetMarketSummary', [
             'primaryCurrencyCode' => $primaryCurrencyCode,
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
-        ));
+        ]));
     }
 }
