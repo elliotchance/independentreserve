@@ -12,6 +12,6 @@ class OrderBook extends AbstractObject
      */
     public function getCreatedTimestamp()
     {
-        return new DateTime();
+        return new DateTime($this->object->CreatedTimestampUtc);
     }
 }

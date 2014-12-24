@@ -3,6 +3,7 @@
 namespace IndependentReserve\Object;
 
 use Concise\TestCase;
+use DateTime;
 
 class OrderBookTest extends TestCase
 {
@@ -51,5 +52,10 @@ class OrderBookTest extends TestCase
     public function testCreatedTimestampIsADateTime()
     {
         $this->assert($this->order->getCreatedTimestamp(), instance_of, '\DateTime');
+    }
+
+    public function testFactorySetsCreatedTime()
+    {
+        $this->assert($this->order->getCreatedTimestamp(), equals, new DateTime("2014-08-05T06:42:11.3032208Z"));
     }
 }
