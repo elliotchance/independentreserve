@@ -49,4 +49,9 @@ class TradeHistorySummaryTest extends TestCase
     {
         $this->assert($this->tradeHistorySummary->getCreatedTimestamp(), equals, new DateTime("2014-08-05T09:02:57.5440691Z"));
     }
+
+    public function testFactorySetsPrimaryCurrencyCode()
+    {
+        $this->assert($this->tradeHistorySummary->getPrimaryCurrencyCode(), equals, 'Xbt');
+    }
 }

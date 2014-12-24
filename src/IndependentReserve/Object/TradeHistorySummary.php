@@ -14,4 +14,13 @@ class TradeHistorySummary extends AbstractObject
     {
         return new DateTime($this->object->CreatedTimestampUtc);
     }
+
+    /**
+     * The primary currency being shown.
+     * @return string
+     */
+    public function getPrimaryCurrencyCode()
+    {
+        return $this->object->PrimaryCurrencyCode;
+    }
 }
