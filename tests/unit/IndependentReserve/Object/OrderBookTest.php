@@ -58,4 +58,9 @@ class OrderBookTest extends TestCase
     {
         $this->assert($this->order->getCreatedTimestamp(), equals, new DateTime("2014-08-05T06:42:11.3032208Z"));
     }
+
+    public function testFactorySetsPrimaryCurrencyCode()
+    {
+        $this->assert($this->order->getPrimaryCurrencyCode(), equals, 'Xbt');
+    }
 }
