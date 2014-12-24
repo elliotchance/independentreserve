@@ -81,4 +81,9 @@ class MarketSummaryTest extends TestCase
     {
         $this->assert($this->marketSummary->getPrimaryCurrencyCode(), equals, 'Xbt');
     }
+
+    public function testFactorySetsSecondaryCurrencyCode()
+    {
+        $this->assert($this->marketSummary->getSecondaryCurrencyCode(), equals, 'Usd');
+    }
 }

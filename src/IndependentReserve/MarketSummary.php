@@ -103,4 +103,13 @@ class MarketSummary
     {
         return $this->object->PrimaryCurrencyCode;
     }
+
+    /**
+     * The secondary currency being used for pricing.
+     * @return string
+     */
+    public function getSecondaryCurrencyCode()
+    {
+        return $this->object->SecondaryCurrencyCode;
+    }
 }
