@@ -29,4 +29,9 @@ class BuyOrderTest extends TestCase
     {
         $this->assert($this->order->getOrderType(), equals, 'LimitBid');
     }
+
+    public function testFactorySetsPrice()
+    {
+        $this->assert($this->order->getPrice(), equals, 497.02);
+    }
 }

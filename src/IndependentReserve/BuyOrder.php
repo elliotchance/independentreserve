@@ -29,4 +29,12 @@ class BuyOrder
     {
         return $this->object->OrderType;
     }
+
+    /**
+     * @return double
+     */
+    public function getPrice()
+    {
+        return $this->object->Price;
+    }
 }
