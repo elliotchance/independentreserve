@@ -76,4 +76,9 @@ class MarketSummaryTest extends TestCase
     {
         $this->assert($this->marketSummary->getLastPrice(), equals, 511);
     }
+
+    public function testFactorySetsPrimaryCurrencyCode()
+    {
+        $this->assert($this->marketSummary->getPrimaryCurrencyCode(), equals, 'Xbt');
+    }
 }

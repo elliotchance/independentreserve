@@ -94,4 +94,13 @@ class MarketSummary
     {
         return $this->object->LastPrice;
     }
+
+    /**
+     * The primary currency being summarised.
+     * @return string
+     */
+    public function getPrimaryCurrencyCode()
+    {
+        return $this->object->PrimaryCurrencyCode;
+    }
 }
