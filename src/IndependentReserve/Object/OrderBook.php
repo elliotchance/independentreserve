@@ -39,9 +39,7 @@ class OrderBook extends AbstractObject
      */
     public function getBuyOrders()
     {
-        return array_map(function (stdClass $object) {
-            return Order::createFromObject($object);
-        }, $this->object->BuyOrders);
+        return $this->generateOrders($this->object->BuyOrders);
     }
 
     /**
@@ -49,6 +47,17 @@ class OrderBook extends AbstractObject
      */
     public function getSellOrders()
     {
-        return [ Order::createFromObject($this->object->SellOrders[0]) ];
+        return $this->generateOrders($this->object->SellOrders);
+    }
+
+    /**
+     * @param array $orders
+     * @return array
+     */
+    protected function generateOrders(array $orders)
+    {
+        return array_map(function (stdClass $object) {
+            return Order::createFromObject($object);
+        }, $orders);
     }
 }
