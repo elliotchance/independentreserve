@@ -76,4 +76,13 @@ class MarketSummary
     {
         return $this->object->DayLowestPrice;
     }
+
+    /**
+     * Volume of primary currency traded in last 24 hours.
+     * @return double
+     */
+    public function getDayVolumeXbt()
+    {
+        return $this->object->DayVolumeXbt;
+    }
 }
