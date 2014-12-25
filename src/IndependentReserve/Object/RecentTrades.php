@@ -39,6 +39,6 @@ class RecentTrades extends AbstractObject
      */
     public function getTrades()
     {
-        return [];
+        return [ Trade::createFromObject($this->object->Trades[0]) ];
     }
 }
