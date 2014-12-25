@@ -29,4 +29,9 @@ class TradeTest extends TestCase
     {
         $this->assert($this->trade->getPrimaryCurrencyAmount(), equals, 1);
     }
+
+    public function testFactorySetsSecondaryCurrencyTradePrice()
+    {
+        $this->assert($this->trade->getSecondaryCurrencyTradePrice(), equals, 510);
+    }
 }
