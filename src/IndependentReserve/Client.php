@@ -6,6 +6,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
 use IndependentReserve\Object\MarketSummary;
 use IndependentReserve\Object\OrderBook;
+use IndependentReserve\Object\RecentTrades;
 use IndependentReserve\Object\TradeHistorySummary;
 
 class Client
@@ -141,6 +142,30 @@ class Client
             'primaryCurrencyCode' => $primaryCurrencyCode,
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
             'numberOfHoursInThePastToRetrieve' => $numberOfHoursInThePastToRetrieve,
+        ]));
+    }
+
+    /**
+     * Returns a list of most recently executed trades for a given currency pair.
+     * @note This method caches return values for 1 second. Calling it more than once per second
+     *       will result in cached data being returned.
+     * @param string $primaryCurrencyCode The digital currency for which to retrieve recent trades.
+     *        Must be a valid primary currency, which can be checked via the
+     *        getValidPrimaryCurrencyCodes() method.
+     * @param string $secondaryCurrencyCode The fiat currency in which to retrieve recent trades.
+     *        Must be a valid secondary currency, which can be checked via the
+     *        getValidPrimaryCurrencyCodes() method.
+     * @param integer $numberOfRecentTradesToRetrieve How many recent trades to retrieve (maximum
+     *        is 50).
+     * @return RecentTrades
+     */
+    public function getRecentTrades($primaryCurrencyCode, $secondaryCurrencyCode,
+        $numberOfRecentTradesToRetrieve)
+    {
+        return RecentTrades::createFromObject($this->getEndpoint('GetRecentTrades', [
+            'primaryCurrencyCode' => $primaryCurrencyCode,
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+            'numberOfRecentTradesToRetrieve' => $numberOfRecentTradesToRetrieve,
         ]));
     }
 }

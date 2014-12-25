@@ -81,4 +81,15 @@ class ClientIntegrationTest extends TestCase
         $this->verify($tradeHistorySummary->getSecondaryCurrencyCode(), equals, Currency::USD);
         $this->verify(count($tradeHistorySummary->getHistorySummaryItems()), equals, 3);
     }
+
+    public function testGetRecentTrades()
+    {
+        $recentTrades = $this->client->getRecentTrades(Currency::XBT, Currency::USD, 3);
+        $this->assert($recentTrades, instance_of, '\IndependentReserve\Object\RecentTrades');
+
+        $this->verify(date, $recentTrades->getCreatedTimestamp(), is_after, time() - 86400);
+        $this->verify($recentTrades->getPrimaryCurrencyCode(), equals, Currency::XBT);
+        $this->verify($recentTrades->getSecondaryCurrencyCode(), equals, Currency::USD);
+        $this->verify(count($recentTrades->getTrades()), equals, 3);
+    }
 }
