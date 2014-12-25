@@ -25,10 +25,11 @@ class RecentTrades extends AbstractObject
     }
 
     /**
+     * UTC timestamp of when the data was generated.
      * @return DateTime
      */
     public function getCreatedTimestamp()
     {
-        return new DateTime();
+        return new DateTime($this->object->CreatedTimestampUtc);
     }
 }

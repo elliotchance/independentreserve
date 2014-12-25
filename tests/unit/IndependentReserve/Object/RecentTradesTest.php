@@ -51,4 +51,9 @@ class RecentTradesTest extends TestCase
     {
         $this->assert($this->recentTrades->getCreatedTimestamp(), instance_of, '\DateTime');
     }
+
+    public function testFactorySetsCreatedTimestamp()
+    {
+        $this->assert($this->recentTrades->getCreatedTimestamp(), equals, new DateTime("2014-08-05T09:14:39.4830696Z"));
+    }
 }
