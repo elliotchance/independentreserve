@@ -6,6 +6,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
 use IndependentReserve\Object\MarketSummary;
 use IndependentReserve\Object\OrderBook;
+use IndependentReserve\Object\TradeHistorySummary;
 
 class Client
 {
@@ -102,11 +103,11 @@ class Client
 
     /**
      * Returns the Order Book for a given currency pair.
-     * @param string $primaryCurrencyCode The digital currency for which to retrieve market summary.
+     * @param string $primaryCurrencyCode The digital currency for which to retrieve order book.
      *        Must be a valid primary currency, which can be checked via the
      *        getValidPrimaryCurrencyCodes() method.
-     * @param string $secondaryCurrencyCode The fiat currency in which to retrieve market summary.
-     *        Must be a valid secondary currency, which can be checked via the
+     * @param string $secondaryCurrencyCode The fiat currency in which to retrieve order book. Must
+     *        be a valid secondary currency, which can be checked via the
      *        getValidSecondaryCurrencyCodes() method.
      * @return OrderBook
      */
@@ -115,6 +116,29 @@ class Client
         return OrderBook::createFromObject($this->getEndpoint('GetOrderBook', [
             'primaryCurrencyCode' => $primaryCurrencyCode,
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
+        ]));
+    }
+
+    /**
+     * Returns summarised historical trading data for a given currency pair. Data is summarised into
+     * 1 hour intervals.
+     * @param string $primaryCurrencyCode The digital currency for which to retrieve the trade
+     *        history summary. Must be a valid primary currency, which can be checked via the
+     *        getValidPrimaryCurrencyCodes() method.
+     * @param string $secondaryCurrencyCode The fiat currency in which to retrieve the trade history
+     *        summary. Must be a valid secondary currency, which can be checked via the
+     *        getValidSecondaryCurrencyCodes() method.
+     * @param int $numberOfHoursInThePastToRetrieve How many past hours of historical summary data
+     *        to retrieve (maximum is 240).
+     * @return TradeHistorySummary
+     */
+    public function getTradeHistorySummary($primaryCurrencyCode, $secondaryCurrencyCode,
+        $numberOfHoursInThePastToRetrieve)
+    {
+        return TradeHistorySummary::createFromObject($this->getEndpoint('GetTradeHistorySummary', [
+            'primaryCurrencyCode' => $primaryCurrencyCode,
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+            'numberOfHoursInThePastToRetrieve' => $numberOfHoursInThePastToRetrieve,
         ]));
     }
 }
