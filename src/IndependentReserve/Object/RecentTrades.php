@@ -32,4 +32,13 @@ class RecentTrades extends AbstractObject
     {
         return new DateTime($this->object->CreatedTimestampUtc);
     }
+
+    /**
+     * List of individual trades.
+     * @return array
+     */
+    public function getTrades()
+    {
+        return [];
+    }
 }
