@@ -41,4 +41,9 @@ class RecentTradesTest extends TestCase
     {
         $this->assert($this->recentTrades->getPrimaryCurrencyCode(), equals, 'Xbt');
     }
+
+    public function testFactorySetsSecondaryCurrencyCode()
+    {
+        $this->assert($this->recentTrades->getSecondaryCurrencyCode(), equals, 'Usd');
+    }
 }
