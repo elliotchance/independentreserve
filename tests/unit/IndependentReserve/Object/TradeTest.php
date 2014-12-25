@@ -34,4 +34,9 @@ class TradeTest extends TestCase
     {
         $this->assert($this->trade->getSecondaryCurrencyTradePrice(), equals, 510);
     }
+
+    public function testTradeTimestampIsADateTime()
+    {
+        $this->assert($this->trade->getTradeTimestamp(), instance_of, '\DateTime');
+    }
 }

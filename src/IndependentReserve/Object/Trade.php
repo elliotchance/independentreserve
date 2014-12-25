@@ -2,6 +2,8 @@
 
 namespace IndependentReserve\Object;
 
+use DateTime;
+
 class Trade extends AbstractObject
 {
     /**
@@ -20,5 +22,14 @@ class Trade extends AbstractObject
     public function getSecondaryCurrencyTradePrice()
     {
         return $this->object->SecondaryCurrencyTradePrice;
+    }
+
+    /**
+     * UTC timestamp of trade.
+     * @return DateTime
+     */
+    public function getTradeTimestamp()
+    {
+        return new DateTime();
     }
 }
