@@ -30,6 +30,6 @@ class Trade extends AbstractObject
      */
     public function getTradeTimestamp()
     {
-        return new DateTime();
+        return new DateTime($this->object->TradeTimestampUtc);
     }
 }

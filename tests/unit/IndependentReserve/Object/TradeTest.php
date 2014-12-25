@@ -39,4 +39,9 @@ class TradeTest extends TestCase
     {
         $this->assert($this->trade->getTradeTimestamp(), instance_of, '\DateTime');
     }
+
+    public function testFactorySetsTradeTimestamp()
+    {
+        $this->assert($this->trade->getTradeTimestamp(), equals, new DateTime("2014-07-31T10:34:05.935412Z"));
+    }
 }
