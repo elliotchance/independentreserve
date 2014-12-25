@@ -122,6 +122,8 @@ class Client
     /**
      * Returns summarised historical trading data for a given currency pair. Data is summarised into
      * 1 hour intervals.
+     * @note This method caches return values for 30 minutes. Calling it more than once per 30
+     *       minutes will result in cached data being returned.
      * @param string $primaryCurrencyCode The digital currency for which to retrieve the trade
      *        history summary. Must be a valid primary currency, which can be checked via the
      *        getValidPrimaryCurrencyCodes() method.
