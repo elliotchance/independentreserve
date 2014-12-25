@@ -2,6 +2,8 @@
 
 namespace IndependentReserve\Object;
 
+use DateTime;
+
 class RecentTrades extends AbstractObject
 {
     /**
@@ -20,5 +22,13 @@ class RecentTrades extends AbstractObject
     public function getSecondaryCurrencyCode()
     {
         return $this->object->SecondaryCurrencyCode;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreatedTimestamp()
+    {
+        return new DateTime();
     }
 }

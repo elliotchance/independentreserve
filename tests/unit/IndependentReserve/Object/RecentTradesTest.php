@@ -46,4 +46,9 @@ class RecentTradesTest extends TestCase
     {
         $this->assert($this->recentTrades->getSecondaryCurrencyCode(), equals, 'Usd');
     }
+
+    public function testCreatedTimestampIsADateTime()
+    {
+        $this->assert($this->recentTrades->getCreatedTimestamp(), instance_of, '\DateTime');
+    }
 }
