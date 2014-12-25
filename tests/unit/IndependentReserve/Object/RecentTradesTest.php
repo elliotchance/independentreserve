@@ -67,4 +67,10 @@ class RecentTradesTest extends TestCase
         $trades = $this->recentTrades->getTrades();
         $this->assert($trades[0], instance_of, '\IndependentReserve\Object\Trade');
     }
+
+    public function testFactorySetsAllTrades()
+    {
+        $trades = $this->recentTrades->getTrades();
+        $this->assert($trades[1], instance_of, '\IndependentReserve\Object\Trade');
+    }
 }

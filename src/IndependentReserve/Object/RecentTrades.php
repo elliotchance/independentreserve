@@ -3,6 +3,7 @@
 namespace IndependentReserve\Object;
 
 use DateTime;
+use stdClass;
 
 class RecentTrades extends AbstractObject
 {
@@ -39,6 +40,8 @@ class RecentTrades extends AbstractObject
      */
     public function getTrades()
     {
-        return [ Trade::createFromObject($this->object->Trades[0]) ];
+        return array_map(function (stdClass $object) {
+            return Trade::createFromObject($object);
+        }, $this->object->Trades);
     }
 }
