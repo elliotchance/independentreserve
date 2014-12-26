@@ -33,4 +33,9 @@ class FxRateTest extends TestCase
     {
         $this->assert($this->fxRate->getCurrencyCodeB(), equals, 'Usd');
     }
+
+    public function testFactorySetsRate()
+    {
+        $this->assert($this->fxRate->getRate(), equals, 0.86830000);
+    }
 }

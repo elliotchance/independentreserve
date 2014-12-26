@@ -19,4 +19,12 @@ class FxRate extends AbstractObject
     {
         return $this->object->CurrencyCodeB;
     }
+
+    /**
+     * @return double
+     */
+    public function getRate()
+    {
+        return $this->object->Rate;
+    }
 }
