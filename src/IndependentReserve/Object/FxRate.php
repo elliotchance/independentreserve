@@ -11,4 +11,12 @@ class FxRate extends AbstractObject
     {
         return $this->object->CurrencyCodeA;
     }
+
+    /**
+     * @return string
+     */
+    public function getCurrencyCodeB()
+    {
+        return $this->object->CurrencyCodeB;
+    }
 }
