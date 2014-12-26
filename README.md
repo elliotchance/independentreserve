@@ -3,6 +3,15 @@ IndependentReserve
 
 PHP API for [independentreserve.com](https://www.independentreserve.com)
 
+Installation
+------------
+
+Using [composer](https://getcomposer.org):
+
+```
+composer require elliotchance/independentreserve
+```
+
 Public APIs
 -----------
 
