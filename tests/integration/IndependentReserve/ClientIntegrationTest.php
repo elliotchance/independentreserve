@@ -92,4 +92,20 @@ class ClientIntegrationTest extends TestCase
         $this->verify($recentTrades->getSecondaryCurrencyCode(), equals, Currency::USD);
         $this->verify(count($recentTrades->getTrades()), equals, 3);
     }
+
+    public function testGetFxRates()
+    {
+        $fxRates = $this->client->getFxRates();
+        $this->assert($fxRates, is_an_array);
+
+        $this->assert($fxRates[0], instance_of, '\IndependentReserve\Object\FxRate');
+        $this->verify($fxRates[0]->getCurrencyCodeA(), equals, Currency::AUD);
+        $this->verify($fxRates[0]->getCurrencyCodeB(), equals, Currency::USD);
+        $this->verify($fxRates[0]->getRate(), greater_than, 0);
+
+        $this->assert($fxRates[1], instance_of, '\IndependentReserve\Object\FxRate');
+        $this->verify($fxRates[1]->getCurrencyCodeA(), equals, Currency::USD);
+        $this->verify($fxRates[1]->getCurrencyCodeB(), equals, Currency::AUD);
+        $this->verify($fxRates[1]->getRate(), greater_than, 0);
+    }
 }

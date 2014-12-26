@@ -4,10 +4,12 @@ namespace IndependentReserve;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
+use IndependentReserve\Object\FxRate;
 use IndependentReserve\Object\MarketSummary;
 use IndependentReserve\Object\OrderBook;
 use IndependentReserve\Object\RecentTrades;
 use IndependentReserve\Object\TradeHistorySummary;
+use stdClass;
 
 class Client
 {
@@ -167,5 +169,21 @@ class Client
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
             'numberOfRecentTradesToRetrieve' => $numberOfRecentTradesToRetrieve,
         ]));
+    }
+
+    /**
+     * Returns a list of exchange rates used by Independent Reserve when depositing funds or
+     * withdrawing funds from accounts.
+     * @note The rates represent the amount of Currency Code B that can be bought with 1 unit of
+     *       Currency Code A.
+     * @note This method caches return values for 1 minute. Calling it more than once per minute
+     *       will result in cached data being returned.
+     * @return FxRate[]
+     */
+    public function getFxRates()
+    {
+        return array_map(function (stdClass $object) {
+            return FxRate::createFromObject($object);
+        }, $this->getEndpoint('GetFxRates'));
     }
 }
