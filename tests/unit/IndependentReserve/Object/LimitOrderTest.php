@@ -51,4 +51,9 @@ class LimitOrderTest extends TestCase
     {
         $this->assert($this->order->getPrice(), equals, 485.76);
     }
+
+    public function testFactorySetsPrimaryCurrencyCode()
+    {
+        $this->assert($this->order->getPrimaryCurrencyCode(), equals, 'Xbt');
+    }
 }
