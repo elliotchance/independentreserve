@@ -10,5 +10,7 @@ class OrderStatus
 
     const FILLED = 'Filled';
 
+    const PARTIALLY_FILLED_AND_CANCELLED = 'PartiallyFilledAndCancelled';
+
     const CANCELLED = 'Cancelled';
 }
