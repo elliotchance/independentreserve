@@ -5,4 +5,6 @@ namespace IndependentReserve;
 class OrderStatus
 {
     const OPEN = 'Open';
+
+    const PARTIALLY_FILLED = 'PartiallyFilled';
 }
