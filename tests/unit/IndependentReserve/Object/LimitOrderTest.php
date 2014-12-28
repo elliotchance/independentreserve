@@ -77,4 +77,9 @@ class LimitOrderTest extends TestCase
     {
         $this->assert($this->order->getType(), equals, OrderType::LIMIT_OFFER);
     }
+
+    public function testFactorySetsVolumeFilled()
+    {
+        $this->assert($this->order->getVolumeFilled(), equals, 0);
+    }
 }

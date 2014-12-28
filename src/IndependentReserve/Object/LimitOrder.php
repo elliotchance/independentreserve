@@ -70,4 +70,13 @@ class LimitOrder extends AbstractTimestampedObject
     {
         return $this->object->Type;
     }
+
+    /**
+     * Volume already filled on this order.
+     * @return double
+     */
+    public function getVolumeFilled()
+    {
+        return $this->object->VolumeFilled;
+    }
 }
