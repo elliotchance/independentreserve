@@ -60,4 +60,14 @@ class LimitOrder extends AbstractTimestampedObject
     {
         return $this->object->Status;
     }
+
+    /**
+     * Type of order.
+     * @see \IndependentReserve\OrderType
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->object->Type;
+    }
 }

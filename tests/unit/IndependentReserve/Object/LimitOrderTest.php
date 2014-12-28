@@ -4,6 +4,7 @@ namespace IndependentReserve\Object;
 
 use Concise\TestCase;
 use DateTime;
+use IndependentReserve\OrderType;
 
 class LimitOrderTest extends TestCase
 {
@@ -70,5 +71,10 @@ class LimitOrderTest extends TestCase
     public function testFactorySetsStatus()
     {
         $this->assert($this->order->getStatus(), equals, 'Open');
+    }
+
+    public function testFactorySetsType()
+    {
+        $this->assert($this->order->getType(), equals, OrderType::LIMIT_OFFER);
     }
 }
