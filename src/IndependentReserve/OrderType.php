@@ -7,4 +7,6 @@ class OrderType
     const LIMIT_BID = 'LimitBid';
 
     const LIMIT_OFFER = 'LimitOffer';
+
+    const MARKET_BID = 'MarketBid';
 }
