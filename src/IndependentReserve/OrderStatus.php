@@ -7,4 +7,6 @@ class OrderStatus
     const OPEN = 'Open';
 
     const PARTIALLY_FILLED = 'PartiallyFilled';
+
+    const FILLED = 'Filled';
 }

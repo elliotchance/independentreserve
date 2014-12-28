@@ -15,4 +15,9 @@ class OrderStatusTest extends TestCase
     {
         $this->assert(OrderStatus::PARTIALLY_FILLED, equals, 'PartiallyFilled');
     }
+
+    public function testFilled()
+    {
+        $this->assert(OrderStatus::FILLED, equals, 'Filled');
+    }
 }
