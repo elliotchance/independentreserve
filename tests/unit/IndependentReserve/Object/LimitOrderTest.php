@@ -61,4 +61,9 @@ class LimitOrderTest extends TestCase
     {
         $this->assert($this->order->getReservedAmount(), equals, 0.358);
     }
+
+    public function testFactorySetsSecondaryCurrencyCode()
+    {
+        $this->assert($this->order->getSecondaryCurrencyCode(), equals, 'Usd');
+    }
 }

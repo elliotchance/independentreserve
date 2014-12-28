@@ -39,4 +39,13 @@ class LimitOrder extends AbstractTimestampedObject
     {
         return $this->object->ReservedAmount;
     }
+
+    /**
+     * Secondary currency of order.
+     * @return string
+     */
+    public function getSecondaryCurrencyCode()
+    {
+        return $this->object->SecondaryCurrencyCode;
+    }
 }
