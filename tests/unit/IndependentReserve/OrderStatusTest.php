@@ -20,4 +20,9 @@ class OrderStatusTest extends TestCase
     {
         $this->assert(OrderStatus::FILLED, equals, 'Filled');
     }
+
+    public function testCancelled()
+    {
+        $this->assert(OrderStatus::CANCELLED, equals, 'Cancelled');
+    }
 }

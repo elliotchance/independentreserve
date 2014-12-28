@@ -9,4 +9,6 @@ class OrderStatus
     const PARTIALLY_FILLED = 'PartiallyFilled';
 
     const FILLED = 'Filled';
+
+    const CANCELLED = 'Cancelled';
 }
