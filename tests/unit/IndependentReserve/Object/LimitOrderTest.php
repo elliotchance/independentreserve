@@ -46,4 +46,9 @@ class LimitOrderTest extends TestCase
     {
         $this->assert($this->order->getOrderGuid(), equals, '719c495c-a39e-4884-93ac-280b37245037');
     }
+
+    public function testFactorySetsPrice()
+    {
+        $this->assert($this->order->getPrice(), equals, 485.76);
+    }
 }

@@ -12,4 +12,13 @@ class LimitOrder extends AbstractTimestampedObject
     {
         return $this->object->OrderGuid;
     }
+
+    /**
+     * Order limit price in secondary currency.
+     * @return double
+     */
+    public function getPrice()
+    {
+        return $this->object->Price;
+    }
 }
