@@ -25,7 +25,7 @@ class OrderBook extends AbstractTimestampedObject
     }
 
     /**
-     * @return array
+     * @return SimpleOrder[]
      */
     public function getBuyOrders()
     {
@@ -33,7 +33,7 @@ class OrderBook extends AbstractTimestampedObject
     }
 
     /**
-     * @return array
+     * @return SimpleOrder[]
      */
     public function getSellOrders()
     {
@@ -42,7 +42,7 @@ class OrderBook extends AbstractTimestampedObject
 
     /**
      * @param array $orders
-     * @return array
+     * @return SimpleOrder[]
      */
     protected function generateOrders(array $orders)
     {
