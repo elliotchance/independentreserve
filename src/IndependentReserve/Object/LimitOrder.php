@@ -30,4 +30,13 @@ class LimitOrder extends AbstractTimestampedObject
     {
         return $this->object->PrimaryCurrencyCode;
     }
+
+    /**
+     * The amount of funds reserved in your account by this order.
+     * @return double
+     */
+    public function getReservedAmount()
+    {
+        return $this->object->ReservedAmount;
+    }
 }
