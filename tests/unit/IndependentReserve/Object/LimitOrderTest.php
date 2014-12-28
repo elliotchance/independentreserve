@@ -82,4 +82,9 @@ class LimitOrderTest extends TestCase
     {
         $this->assert($this->order->getVolumeFilled(), equals, 0);
     }
+
+    public function testFactorySetsVolumeOrdered()
+    {
+        $this->assert($this->order->getVolumeOrdered(), equals, 0.358);
+    }
 }
