@@ -1,6 +1,12 @@
 IndependentReserve
 ==================
 
+[![Build Status](https://travis-ci.org/elliotchance/independentreserve.svg?branch=master)](https://travis-ci.org/elliotchance/independentreserve)
+[![Coverage Status](https://img.shields.io/coveralls/elliotchance/independentreserve.svg)](https://coveralls.io/r/elliotchance/independentreserve)
+[![Latest Stable Version](https://poser.pugx.org/elliotchance/independentreserve/v/stable.svg)](https://packagist.org/packages/elliotchance/independentreserve)
+[![Total Downloads](https://poser.pugx.org/elliotchance/independentreserve/downloads.svg)](https://packagist.org/packages/elliotchance/independentreserve)
+[![License](https://poser.pugx.org/elliotchance/independentreserve/license.svg)](https://packagist.org/packages/elliotchance/independentreserve)
+
 PHP API for [independentreserve.com](https://www.independentreserve.com)
 
 Installation
