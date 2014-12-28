@@ -2,6 +2,9 @@
 
 namespace IndependentReserve;
 
+/**
+ * Constants for all the possible order statuses.
+ */
 class OrderStatus
 {
     const OPEN = 'Open';
@@ -15,4 +18,6 @@ class OrderStatus
     const CANCELLED = 'Cancelled';
 
     const PARTIALLY_FILLED_AND_EXPIRED = 'PartiallyFilledAndExpired';
+
+    const EXPIRED = 'Expired';
 }
