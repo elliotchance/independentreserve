@@ -20,4 +20,9 @@ class OrderTypeTest extends TestCase
     {
         $this->assert(OrderType::MARKET_BID, equals, 'MarketBid');
     }
+
+    public function testMarketOffer()
+    {
+        $this->assert(OrderType::MARKET_OFFER, equals, 'MarketOffer');
+    }
 }
