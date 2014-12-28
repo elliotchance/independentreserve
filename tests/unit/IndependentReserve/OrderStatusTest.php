@@ -30,4 +30,9 @@ class OrderStatusTest extends TestCase
     {
         $this->assert(OrderStatus::CANCELLED, equals, 'Cancelled');
     }
+
+    public function testPartiallyFilledAndExpired()
+    {
+        $this->assert(OrderStatus::PARTIALLY_FILLED_AND_EXPIRED, equals, 'PartiallyFilledAndExpired');
+    }
 }

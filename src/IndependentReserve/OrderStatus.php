@@ -13,4 +13,6 @@ class OrderStatus
     const PARTIALLY_FILLED_AND_CANCELLED = 'PartiallyFilledAndCancelled';
 
     const CANCELLED = 'Cancelled';
+
+    const PARTIALLY_FILLED_AND_EXPIRED = 'PartiallyFilledAndExpired';
 }
