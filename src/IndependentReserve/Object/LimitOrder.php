@@ -2,16 +2,14 @@
 
 namespace IndependentReserve\Object;
 
-use DateTime;
-
-class LimitOrder extends AbstractObject
+class LimitOrder extends AbstractTimestampedObject
 {
     /**
-     * UTC timestamp of when the data was generated.
-     * @return DateTime
+     * Unique identifier of the order.
+     * @return string
      */
-    public function getCreatedTimestamp()
+    public function getOrderGuid()
     {
-        return new DateTime($this->object->CreatedTimestampUtc);
+        return $this->object->OrderGuid;
     }
 }

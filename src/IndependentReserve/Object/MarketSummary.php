@@ -2,19 +2,8 @@
 
 namespace IndependentReserve\Object;
 
-use DateTime;
-
-class MarketSummary extends AbstractObject
+class MarketSummary extends AbstractTimestampedObject
 {
-    /**
-     * UTC timestamp of when the market summary was generated.
-     * @return DateTime
-     */
-    public function getCreatedTimestamp()
-    {
-        return new DateTime($this->object->CreatedTimestampUtc);
-    }
-
     /**
      * Current highest bid on order book.
      * @return float

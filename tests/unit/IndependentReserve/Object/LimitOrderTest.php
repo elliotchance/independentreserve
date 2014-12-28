@@ -8,7 +8,7 @@ use DateTime;
 class LimitOrderTest extends TestCase
 {
     /**
-     * @var Order
+     * @var LimitOrder
      */
     protected $order;
 
@@ -40,5 +40,10 @@ class LimitOrderTest extends TestCase
     public function testFactorySetsCreatedTimestamp()
     {
         $this->assert($this->order->getCreatedTimestamp(), equals, new DateTime("2014-08-05T06:42:11.3032208Z"));
+    }
+
+    public function testFactorySetsOrderGuid()
+    {
+        $this->assert($this->order->getOrderGuid(), equals, '719c495c-a39e-4884-93ac-280b37245037');
     }
 }
