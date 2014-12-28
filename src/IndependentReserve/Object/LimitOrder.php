@@ -48,4 +48,16 @@ class LimitOrder extends AbstractTimestampedObject
     {
         return $this->object->SecondaryCurrencyCode;
     }
+
+    /**
+     * Order status.
+     * @see \IndependentReserve\OrderStatus::OPEN
+     * @see \IndependentReserve\OrderStatus::PARTIALLY_FILLED
+     * @see \IndependentReserve\OrderStatus::FILLED
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->object->Status;
+    }
 }
