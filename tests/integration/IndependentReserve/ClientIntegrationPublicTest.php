@@ -4,7 +4,7 @@ namespace IndependentReserve;
 
 use Concise\TestCase;
 
-class ClientIntegrationTest extends TestCase
+class ClientIntegrationPublicTest extends TestCase
 {
     /**
      * @var Client

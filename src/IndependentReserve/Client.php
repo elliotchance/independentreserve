@@ -6,7 +6,9 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
 use IndependentReserve\Object\FxRate;
 use IndependentReserve\Object\MarketSummary;
+use IndependentReserve\Object\Order;
 use IndependentReserve\Object\OrderBook;
+use IndependentReserve\Object\PagedIterator;
 use IndependentReserve\Object\RecentTrades;
 use IndependentReserve\Object\TradeHistorySummary;
 use stdClass;
@@ -14,13 +16,29 @@ use stdClass;
 class Client
 {
     /**
-     * @var Client
+     * @var GuzzleClient
      */
     protected $client;
 
-    public function __construct()
+    /**
+     * @var string
+     */
+    protected $apiKey;
+
+    /**
+     * @var string
+     */
+    protected $apiSecret;
+
+    /**
+     * @param string $apiKey
+     * @param string $apiSecret
+     */
+    public function __construct($apiKey = '', $apiSecret = '')
     {
         $this->client = new GuzzleClient();
+        $this->apiKey = $apiKey;
+        $this->apiSecret = $apiSecret;
     }
 
     /**
@@ -38,12 +56,22 @@ class Client
     /**
      * @param string $endpoint The public endpoint name.
      * @param array $params Optional named parameters.
+     * @param string $visibility `Public` or `Private`.
+     * @param string $method
      * @return mixed
      */
-    protected function getEndpoint($endpoint, array $params = array())
+    public function getEndpoint($endpoint, array $params = array(), $visibility = 'Public',
+        $method = 'GET')
     {
-        $query = http_build_query($params);
-        return $this->get("https://api.independentreserve.com/Public/$endpoint?$query");
+        $url = "https://api.independentreserve.com/$visibility/$endpoint";
+        if ('GET' === $method) {
+            $query = http_build_query($params);
+            return $this->get("$url?$query");
+        }
+
+        /** @var \GuzzleHttp\Message\AbstractMessage $request */
+        $response = $this->client->post($url, [ 'json' => $params ]);
+        return $response->getBody()->getContents();
     }
 
     /**
@@ -185,5 +213,48 @@ class Client
         return array_map(function (stdClass $object) {
             return FxRate::createFromObject($object);
         }, $this->getEndpoint('GetFxRates'));
+    }
+
+    /**
+     * Get the components required to make private API calls.
+     * @return array
+     */
+    public function getSignature()
+    {
+        $nonce = sprintf('%ld', microtime(true) * 1e9);
+        $signature = strtoupper(hash_hmac('sha256', $nonce . $this->apiKey, $this->apiSecret));
+
+        return [
+            'apiKey' => $this->apiKey,
+            'nonce' => $nonce,
+            'signature' => $signature,
+        ];
+    }
+
+    /**
+     * Fetch a private API.
+     * @param string $endpoint
+     * @param array $params
+     * @return array
+     */
+    public function getPrivateEndpoint($endpoint, array $params)
+    {
+        return $this->getEndpoint($endpoint, $this->getSignature() + $params, 'Private', 'POST');
+    }
+
+    /**
+     * @param $primaryCurrencyCode
+     * @param $secondaryCurrencyCode
+     * @return PagedIterator
+     */
+    public function getOpenOrders($primaryCurrencyCode, $secondaryCurrencyCode)
+    {
+        return new PagedIterator($this, 'GetOpenOrders', [
+            'primaryCurrencyCode' => $primaryCurrencyCode,
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+            'pageSize' => 25,
+        ], function (stdClass $object) {
+            return Order::createFromObject($object);
+        });
     }
 }
