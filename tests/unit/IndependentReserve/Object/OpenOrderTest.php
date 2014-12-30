@@ -62,4 +62,9 @@ class OpenOrderTest extends TestCase
     {
         $this->assert($this->order->getOutstanding(), equals, 21.45621);
     }
+
+    public function testFactorySetsPrice()
+    {
+        $this->assert($this->order->getPrice(), equals, 466.36);
+    }
 }
