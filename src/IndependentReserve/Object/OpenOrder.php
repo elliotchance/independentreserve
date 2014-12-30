@@ -12,6 +12,6 @@ class OpenOrder extends AbstractOrder
      */
     public function getCreatedTimestamp()
     {
-        return new DateTime();
+        return new DateTime($this->object->CreatedTimestampUtc);
     }
 }

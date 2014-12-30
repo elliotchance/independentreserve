@@ -37,4 +37,9 @@ class OpenOrderTest extends TestCase
     {
         $this->assert($this->order->getCreatedTimestamp(), instance_of, '\DateTime');
     }
+
+    public function testFactorySetsCreatedTimestamp()
+    {
+        $this->assert($this->order->getCreatedTimestamp(), equals, new DateTime("2014-08-05T06:42:11.3032208Z"));
+    }
 }
