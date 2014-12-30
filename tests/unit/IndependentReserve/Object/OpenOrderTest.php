@@ -52,4 +52,9 @@ class OpenOrderTest extends TestCase
     {
         $this->assert($this->order->getOrderGuid(), equals, 'dd015a29-8f73-4469-a5fa-ea91544dfcda');
     }
+
+    public function testFactorySetsType()
+    {
+        $this->assert($this->order->getType(), equals, OrderType::LIMIT_OFFER);
+    }
 }
