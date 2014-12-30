@@ -14,4 +14,12 @@ class OpenOrder extends AbstractOrder
     {
         return new DateTime($this->object->CreatedTimestampUtc);
     }
+
+    /**
+     * @return double
+     */
+    public function getEstimatedValue()
+    {
+        return $this->object->EstimatedValue;
+    }
 }
