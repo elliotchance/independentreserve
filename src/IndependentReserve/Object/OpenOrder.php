@@ -22,4 +22,13 @@ class OpenOrder extends AbstractOrder
     {
         return $this->object->EstimatedValue;
     }
+
+    /**
+     * Unique identifier of the order.
+     * @return string
+     */
+    public function getOrderGuid()
+    {
+        return $this->object->OrderGuid;
+    }
 }

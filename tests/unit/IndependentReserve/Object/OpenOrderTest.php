@@ -47,4 +47,9 @@ class OpenOrderTest extends TestCase
     {
         $this->assert($this->order->getEstimatedValue(), equals, 10006.31);
     }
+
+    public function testFactorySetsOrderGuid()
+    {
+        $this->assert($this->order->getOrderGuid(), equals, 'dd015a29-8f73-4469-a5fa-ea91544dfcda');
+    }
 }
