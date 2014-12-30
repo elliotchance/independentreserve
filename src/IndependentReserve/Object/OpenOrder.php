@@ -50,4 +50,13 @@ class OpenOrder extends AbstractOrder
     {
         return $this->object->Outstanding;
     }
+
+    /**
+     * Primary currency of order.
+     * @return string
+     */
+    public function getPrimaryCurrencyCode()
+    {
+        return $this->object->PrimaryCurrencyCode;
+    }
 }

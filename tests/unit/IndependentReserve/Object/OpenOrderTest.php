@@ -67,4 +67,9 @@ class OpenOrderTest extends TestCase
     {
         $this->assert($this->order->getPrice(), equals, 466.36);
     }
+
+    public function testFactorySetsPrimaryCurrencyCode()
+    {
+        $this->assert($this->order->getPrimaryCurrencyCode(), equals, 'Xbt');
+    }
 }
