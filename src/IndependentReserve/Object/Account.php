@@ -12,4 +12,13 @@ class Account extends AbstractObject
     {
         return $this->object->AccountGuid;
     }
+
+    /**
+     * Status of account.
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->object->AccountStatus;
+    }
 }

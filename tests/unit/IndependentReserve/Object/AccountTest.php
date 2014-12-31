@@ -31,4 +31,9 @@ class AccountTest extends TestCase
     {
         $this->assert($this->account->getGuid(), equals, '66dcac65-bf07-4e68-ad46-838f51100424');
     }
+
+    public function testFactorySetsStatus()
+    {
+        $this->assert($this->account->getStatus(), equals, 'Active');
+    }
 }
