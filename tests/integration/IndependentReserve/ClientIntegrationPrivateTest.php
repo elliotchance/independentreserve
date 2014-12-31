@@ -61,4 +61,12 @@ class ClientIntegrationPrivateTest extends TestCase
         $this->verify($openOrders[0]->getPrimaryCurrencyCode(), equals, Currency::XBT);
         $this->verify($openOrders[0]->getSecondaryCurrencyCode(), equals, Currency::USD);
     }
+
+    public function testPlaceMarketOrder()
+    {
+        $this->markTestIncomplete("No USD available.");
+
+        $result = $this->client->placeMarketOrder(Currency::XBT, Currency::USD, 1000);
+        $this->assert($result, instance_of, '\IndependentReserve\Object\Order');
+    }
 }

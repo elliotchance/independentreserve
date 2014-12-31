@@ -276,4 +276,20 @@ class Client
             'orderType' => OrderType::LIMIT_BID,
         ]));
     }
+
+    /**
+     * @param string $primaryCurrencyCode
+     * @param string $secondaryCurrencyCode
+     * @param double $volume
+     * @return Order
+     */
+    public function placeMarketOrder($primaryCurrencyCode, $secondaryCurrencyCode, $volume)
+    {
+        return Order::createFromObject($this->getPrivateEndpoint('PlaceMarketOrder', [
+            'primaryCurrencyCode' => $primaryCurrencyCode,
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+            'volume' => $volume,
+            'orderType' => OrderType::LIMIT_BID,
+        ]));
+    }
 }
