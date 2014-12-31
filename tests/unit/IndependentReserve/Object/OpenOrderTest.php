@@ -77,4 +77,9 @@ class OpenOrderTest extends TestCase
     {
         $this->assert($this->order->getSecondaryCurrencyCode(), equals, 'Usd');
     }
+
+    public function testFactorySetsStatus()
+    {
+        $this->assert($this->order->getStatus(), equals, 'Open');
+    }
 }

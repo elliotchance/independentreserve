@@ -68,4 +68,15 @@ class OpenOrder extends AbstractOrder
     {
         return $this->object->SecondaryCurrencyCode;
     }
+
+    /**
+     * Order status.
+     * @see \IndependentReserve\OrderStatus::OPEN
+     * @see \IndependentReserve\OrderStatus::PARTIALLY_FILLED
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->object->Status;
+    }
 }
