@@ -41,4 +41,13 @@ class Account extends AbstractObject
     {
         return $this->object->CurrencyCode;
     }
+
+    /**
+     * Total balance in account.
+     * @return double
+     */
+    public function getTotalBalance()
+    {
+        return $this->object->TotalBalance;
+    }
 }

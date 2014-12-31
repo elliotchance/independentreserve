@@ -48,4 +48,9 @@ class AccountTest extends TestCase
     {
         $this->assert($this->account->getCurrencyCode(), equals, Currency::XBT);
     }
+
+    public function testFactorySetsTotalBalance()
+    {
+        $this->assert($this->account->getTotalBalance(), equals, 46.81);
+    }
 }
