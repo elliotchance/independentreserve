@@ -57,4 +57,9 @@ class ClosedOrderTest extends TestCase
     {
         $this->assert($this->order->getOutstanding(), equals, 0);
     }
+
+    public function testFactorySetsAveragePrice()
+    {
+        $this->assert($this->order->getAveragePrice(), equals, 698.8);
+    }
 }

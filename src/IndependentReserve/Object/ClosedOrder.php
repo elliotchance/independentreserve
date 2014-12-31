@@ -42,4 +42,12 @@ class ClosedOrder extends AbstractOrder
     {
         return $this->object->Outstanding;
     }
+
+    /**
+     * @return double
+     */
+    public function getAveragePrice()
+    {
+        return $this->object->AvgPrice;
+    }
 }
