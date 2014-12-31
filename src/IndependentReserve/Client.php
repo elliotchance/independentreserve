@@ -361,4 +361,16 @@ class Client
             return ClosedOrder::createFromObject($object);
         });
     }
+
+    /**
+     * Retrieves a single order.
+     * @param string $guid
+     * @return Order
+     */
+    public function getOrder($guid)
+    {
+        return Order::createFromObject(json_decode($this->getPrivateEndpoint('GetOrderDetails', [
+            'orderGuid' => $guid,
+        ])));
+    }
 }

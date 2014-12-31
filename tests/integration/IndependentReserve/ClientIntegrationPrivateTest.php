@@ -56,7 +56,6 @@ class ClientIntegrationPrivateTest extends TestCase
         $this->verify($openOrders[0]->getVolume(), equals, 0.01);
         $this->verify($openOrders[0]->getOutstanding(), is_greater_than, 0);
         $this->verify($openOrders[0]->getPrice(), is_greater_than, 0);
-        $this->verify($openOrders[0]->getVolume(), is_greater_than, 0);
         $this->verify($openOrders[0]->getGuid(), matches_regex, '/[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}/');
         $this->verify($openOrders[0]->getPrimaryCurrencyCode(), equals, Currency::XBT);
         $this->verify($openOrders[0]->getSecondaryCurrencyCode(), equals, Currency::USD);
@@ -114,5 +113,22 @@ class ClientIntegrationPrivateTest extends TestCase
         $this->verify($openOrders[0]->getGuid(), equals, 'ae1e1dc4-a610-4774-9b97-c3a0b453613b');
         $this->verify($openOrders[0]->getPrimaryCurrencyCode(), equals, Currency::XBT);
         $this->verify($openOrders[0]->getSecondaryCurrencyCode(), equals, Currency::USD);
+    }
+
+    public function testGetOrder()
+    {
+        $order = $this->client->getOrder('ae1e1dc4-a610-4774-9b97-c3a0b453613b');
+
+        $this->assert($order, instance_of, '\IndependentReserve\Object\Order');
+        $this->verify($order->getGuid(), equals, 'ae1e1dc4-a610-4774-9b97-c3a0b453613b');
+        $this->verify($order->getCreatedTimestamp(), equals, new DateTime("2014-12-31 23:23:10.644226Z"));
+        $this->verify($order->getType(), equals, OrderType::MARKET_OFFER);
+        $this->verify($order->getVolumeOrdered(), equals, 0.01);
+        $this->verify($order->getVolumeFilled(), equals, 0.01);
+        $this->verify($order->getPrice(), is_null);
+        $this->verify($order->getReservedAmount(), equals, 0);
+        $this->verify($order->getStatus(), equals, OrderStatus::FILLED);
+        $this->verify($order->getPrimaryCurrencyCode(), equals, Currency::XBT);
+        $this->verify($order->getSecondaryCurrencyCode(), equals, Currency::USD);
     }
 }
