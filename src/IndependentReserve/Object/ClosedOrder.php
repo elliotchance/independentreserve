@@ -33,4 +33,13 @@ class ClosedOrder extends AbstractOrder
     {
         return $this->object->OrderType;
     }
+
+    /**
+     * Unfilled volume still outstanding on this order.
+     * @return double
+     */
+    public function getOutstanding()
+    {
+        return $this->object->Outstanding;
+    }
 }

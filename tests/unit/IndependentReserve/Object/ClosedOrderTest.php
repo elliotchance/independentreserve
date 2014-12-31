@@ -52,4 +52,9 @@ class ClosedOrderTest extends TestCase
     {
         $this->assert($this->order->getType(), equals, OrderType::MARKET_OFFER);
     }
+
+    public function testFactorySetsOutstanding()
+    {
+        $this->assert($this->order->getOutstanding(), equals, 0);
+    }
 }
