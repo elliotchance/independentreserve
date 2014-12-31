@@ -45,7 +45,7 @@ class OrderTest extends TestCase
 
     public function testFactorySetsOrderGuid()
     {
-        $this->assert($this->order->getOrderGuid(), equals, '719c495c-a39e-4884-93ac-280b37245037');
+        $this->assert($this->order->getGuid(), equals, '719c495c-a39e-4884-93ac-280b37245037');
     }
 
     public function testFactorySetsPrice()

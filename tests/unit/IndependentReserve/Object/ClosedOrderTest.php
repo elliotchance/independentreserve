@@ -4,6 +4,7 @@ namespace IndependentReserve\Object;
 
 use Concise\TestCase;
 use DateTime;
+use IndependentReserve\OrderStatus;
 use IndependentReserve\OrderType;
 
 class ClosedOrderTest extends TestCase
@@ -71,5 +72,15 @@ class ClosedOrderTest extends TestCase
     public function testFactorySetsSecondaryCurrencyCode()
     {
         $this->assert($this->order->getSecondaryCurrencyCode(), equals, 'Usd');
+    }
+
+    public function testFactorySetsStatus()
+    {
+        $this->assert($this->order->getStatus(), equals, OrderStatus::FILLED);
+    }
+
+    public function testFactorySetsVolume()
+    {
+        $this->assert($this->order->getVolume(), equals, 0.025);
     }
 }

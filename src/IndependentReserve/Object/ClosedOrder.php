@@ -2,38 +2,8 @@
 
 namespace IndependentReserve\Object;
 
-use DateTime;
-
 class ClosedOrder extends AbstractOrder
 {
-    /**
-     * UTC timestamp of when order was created.
-     * @return DateTime
-     */
-    public function getCreatedTimestamp()
-    {
-        return new DateTime($this->object->CreatedTimestampUtc);
-    }
-
-    /**
-     * Unique identifier of the order.
-     * @return string
-     */
-    public function getGuid()
-    {
-        return $this->object->OrderGuid;
-    }
-
-    /**
-     * Type of order.
-     * @return string
-     * @override
-     */
-    public function getType()
-    {
-        return $this->object->OrderType;
-    }
-
     /**
      * Unfilled volume still outstanding on this order.
      * @return double
@@ -52,20 +22,11 @@ class ClosedOrder extends AbstractOrder
     }
 
     /**
-     * Primary currency of order.
-     * @return string
+     * The original volume ordered.
+     * @return double
      */
-    public function getPrimaryCurrencyCode()
+    public function getVolume()
     {
-        return $this->object->PrimaryCurrencyCode;
-    }
-
-    /**
-     * Secondary currency of order.
-     * @return string
-     */
-    public function getSecondaryCurrencyCode()
-    {
-        return $this->object->SecondaryCurrencyCode;
+        return $this->object->Volume;
     }
 }

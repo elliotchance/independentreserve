@@ -2,11 +2,19 @@
 
 namespace IndependentReserve\Object;
 
-class SimpleOrder extends AbstractOrder
+class SimpleOrder extends AbstractObject
 {
     /**
+     * Order limit price in secondary currency.
+     * @return double
+     */
+    public function getPrice()
+    {
+        return $this->object->Price;
+    }
+
+    /**
      * @return string
-     * @override
      */
     public function getType()
     {
