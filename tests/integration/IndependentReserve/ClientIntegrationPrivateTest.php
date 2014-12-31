@@ -41,7 +41,7 @@ class ClientIntegrationPrivateTest extends TestCase
     {
         $this->markTestIncomplete("No USD available.");
 
-        $result = $this->client->placeLimitOrder(Currency::XBT, Currency::USD, 1000, 0.01);
+        $result = $this->client->placeLimitOrder(Currency::XBT, Currency::USD, OrderType::LIMIT_BID, 1000, 0.01);
         $this->assert($result, instance_of, '\IndependentReserve\Object\Order');
     }
 
@@ -66,7 +66,7 @@ class ClientIntegrationPrivateTest extends TestCase
     {
         $this->markTestIncomplete("No USD available.");
 
-        $result = $this->client->placeMarketOrder(Currency::XBT, Currency::USD, 1000);
+        $result = $this->client->placeMarketOrder(Currency::XBT, Currency::USD, OrderType::LIMIT_BID, 1000);
         $this->assert($result, instance_of, '\IndependentReserve\Object\Order');
     }
 

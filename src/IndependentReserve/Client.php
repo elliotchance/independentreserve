@@ -70,7 +70,8 @@ class Client
             return $this->get("$url?$query");
         }
 
-        /** @var \GuzzleHttp\Message\AbstractMessage $request */
+        /** @var \GuzzleHttp\Message\Response $response */
+        /** @noinspection PhpVoidFunctionResultUsedInspection */
         $response = $this->client->post($url, [ 'json' => $params ]);
         return $response->getBody()->getContents();
     }
@@ -244,8 +245,9 @@ class Client
     }
 
     /**
-     * @param string $primaryCurrencyCode
-     * @param string $secondaryCurrencyCode
+     * Retrieves a page of a specified size, with your currently Open and Partially Filled orders.
+     * @param string $primaryCurrencyCode The primary currency of orders.
+     * @param string $secondaryCurrencyCode The secondary currency of orders.
      * @return OpenOrder[]
      */
     public function getOpenOrders($primaryCurrencyCode, $secondaryCurrencyCode)
@@ -260,41 +262,62 @@ class Client
     }
 
     /**
-     * @param string $primaryCurrencyCode
-     * @param string $secondaryCurrencyCode
-     * @param double $price
-     * @param double $volume
+     * Places new limit bid / offer order. A Limit Bid is a buy order and a Limit Offer is a sell
+     * order.
+     * @param string $primaryCurrencyCode The digital currency code of limit order. Must be a valid
+     *        primary currency, which can be checked via the getValidPrimaryCurrencyCodes() method.
+     * @param string $secondaryCurrencyCode The fiat currency of limit order. Must be a valid
+     *        secondary currency, which can be checked via the getValidSecondaryCurrencyCodes()
+     *        method.
+     * @param string $orderType The type of limit order. Must be a valid limit order type, which can
+     *        be checked via the getValidLimitOrderTypes() method.
+     * @param double $price The price in secondary currency to buy/sell.
+     * @param double $volume The volume to buy/sell in primary currency.
      * @return Order
      */
-    public function placeLimitOrder($primaryCurrencyCode, $secondaryCurrencyCode, $price, $volume)
+    public function placeLimitOrder($primaryCurrencyCode, $secondaryCurrencyCode, $orderType,
+        $price, $volume)
     {
         return Order::createFromObject($this->getPrivateEndpoint('PlaceLimitOrder', [
             'primaryCurrencyCode' => $primaryCurrencyCode,
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
             'price' => $price,
             'volume' => $volume,
-            'orderType' => OrderType::LIMIT_BID,
+            'orderType' => $orderType,
         ]));
     }
 
     /**
-     * @param string $primaryCurrencyCode
-     * @param string $secondaryCurrencyCode
-     * @param double $volume
+     * Place new market bid / offer order. A Market Bid is a buy order and a Market Offer is a sell
+     * order.
+     * @param string $primaryCurrencyCode The digital currency code of market order. Must be a valid
+     *        primary currency, which can be checked via the getValidPrimaryCurrencyCodes() method.
+     * @param string $secondaryCurrencyCode The fiat currency of market order. Must be a valid
+     *        secondary currency, which can be checked via the getValidSecondaryCurrencyCodes()
+     *        method.
+     * @param string $orderType The type of market order. Must be a valid market order type, which
+     *        can be checked via the getValidMarketOrderTypes() method.
+     * @param double $volume The volume to buy/sell in primary currency.
      * @return Order
      */
-    public function placeMarketOrder($primaryCurrencyCode, $secondaryCurrencyCode, $volume)
+    public function placeMarketOrder($primaryCurrencyCode, $secondaryCurrencyCode, $orderType,
+        $volume)
     {
         return Order::createFromObject($this->getPrivateEndpoint('PlaceMarketOrder', [
             'primaryCurrencyCode' => $primaryCurrencyCode,
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
             'volume' => $volume,
-            'orderType' => OrderType::LIMIT_BID,
+            'orderType' => $orderType,
         ]));
     }
 
     /**
-     * @param string $guid
+     * Cancels a previously placed order.
+     * @note The order must be in either 'Open' or 'PartiallyFilled' status to be valid for
+     *       cancellation. You can retrieve list of Open and Partially Filled orders via the
+     *       getOpenOrders() method. You can also check an individual order's status by calling the
+     *       getOrderDetails() method.
+     * @param string $guid The guid of currently open or partially filled order.
      * @return Order
      */
     public function cancelOrder($guid)
