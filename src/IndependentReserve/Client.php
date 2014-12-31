@@ -292,4 +292,15 @@ class Client
             'orderType' => OrderType::LIMIT_BID,
         ]));
     }
+
+    /**
+     * @param string $guid
+     * @return Order
+     */
+    public function cancelOrder($guid)
+    {
+        return Order::createFromObject($this->getPrivateEndpoint('CancelOrder', [
+            'orderGuid' => $guid,
+        ]));
+    }
 }

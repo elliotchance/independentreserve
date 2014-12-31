@@ -69,4 +69,12 @@ class ClientIntegrationPrivateTest extends TestCase
         $result = $this->client->placeMarketOrder(Currency::XBT, Currency::USD, 1000);
         $this->assert($result, instance_of, '\IndependentReserve\Object\Order');
     }
+
+    public function testCancelOrder()
+    {
+        $this->markTestSkipped("We must be able to programatically create and order before we can cancel it.");
+
+        $result = $this->client->cancelOrder('fb1e59ae-f285-4b41-8e80-cbf66cd7cac4');
+        $this->assert($result, instance_of, '\IndependentReserve\Object\Order');
+    }
 }
