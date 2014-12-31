@@ -62,4 +62,9 @@ class ClosedOrderTest extends TestCase
     {
         $this->assert($this->order->getAveragePrice(), equals, 698.8);
     }
+
+    public function testFactorySetsPrimaryCurrencyCode()
+    {
+        $this->assert($this->order->getPrimaryCurrencyCode(), equals, 'Xbt');
+    }
 }
