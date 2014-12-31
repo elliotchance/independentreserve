@@ -79,4 +79,13 @@ class OpenOrder extends AbstractOrder
     {
         return $this->object->Status;
     }
+
+    /**
+     * The original volume ordered.
+     * @return double
+     */
+    public function getVolume()
+    {
+        return $this->object->Volume;
+    }
 }

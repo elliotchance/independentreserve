@@ -82,4 +82,9 @@ class OpenOrderTest extends TestCase
     {
         $this->assert($this->order->getStatus(), equals, 'Open');
     }
+
+    public function testFactorySetsVolume()
+    {
+        $this->assert($this->order->getVolume(), equals, 21.45621);
+    }
 }
