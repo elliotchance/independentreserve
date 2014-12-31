@@ -42,4 +42,9 @@ class ClosedOrderTest extends TestCase
     {
         $this->assert($this->order->getCreatedTimestamp(), equals, new DateTime("2014-08-05T06:42:11.3032208Z"));
     }
+
+    public function testFactorySetsGuid()
+    {
+        $this->assert($this->order->getGuid(), equals, '5c8885cd-5384-4e05-b397-9f5119353e10');
+    }
 }

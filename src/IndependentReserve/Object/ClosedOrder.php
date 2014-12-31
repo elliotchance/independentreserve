@@ -14,4 +14,13 @@ class ClosedOrder extends AbstractOrder
     {
         return new DateTime($this->object->CreatedTimestampUtc);
     }
+
+    /**
+     * Unique identifier of the order.
+     * @return string
+     */
+    public function getGuid()
+    {
+        return $this->object->OrderGuid;
+    }
 }
