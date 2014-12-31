@@ -43,14 +43,9 @@ class OpenOrderTest extends TestCase
         $this->assert($this->order->getCreatedTimestamp(), equals, new DateTime("2014-08-05T06:42:11.3032208Z"));
     }
 
-    public function testFactorySetsEstimatedValue()
-    {
-        $this->assert($this->order->getEstimatedValue(), equals, 10006.31);
-    }
-
     public function testFactorySetsOrderGuid()
     {
-        $this->assert($this->order->getOrderGuid(), equals, 'dd015a29-8f73-4469-a5fa-ea91544dfcda');
+        $this->assert($this->order->getGuid(), equals, 'dd015a29-8f73-4469-a5fa-ea91544dfcda');
     }
 
     public function testFactorySetsType()

@@ -6,6 +6,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
 use IndependentReserve\Object\FxRate;
 use IndependentReserve\Object\MarketSummary;
+use IndependentReserve\Object\OpenOrder;
 use IndependentReserve\Object\Order;
 use IndependentReserve\Object\OrderBook;
 use IndependentReserve\Object\PagedIterator;
@@ -235,7 +236,7 @@ class Client
      * Fetch a private API.
      * @param string $endpoint
      * @param array $params
-     * @return array
+     * @return mixed
      */
     public function getPrivateEndpoint($endpoint, array $params)
     {
@@ -243,9 +244,9 @@ class Client
     }
 
     /**
-     * @param $primaryCurrencyCode
-     * @param $secondaryCurrencyCode
-     * @return PagedIterator
+     * @param string $primaryCurrencyCode
+     * @param string $secondaryCurrencyCode
+     * @return OpenOrder[]
      */
     public function getOpenOrders($primaryCurrencyCode, $secondaryCurrencyCode)
     {
@@ -254,7 +255,25 @@ class Client
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
             'pageSize' => 25,
         ], function (stdClass $object) {
-            return Order::createFromObject($object);
+            return OpenOrder::createFromObject($object);
         });
+    }
+
+    /**
+     * @param string $primaryCurrencyCode
+     * @param string $secondaryCurrencyCode
+     * @param double $price
+     * @param double $volume
+     * @return Order
+     */
+    public function placeLimitOrder($primaryCurrencyCode, $secondaryCurrencyCode, $price, $volume)
+    {
+        return Order::createFromObject($this->getPrivateEndpoint('PlaceLimitOrder', [
+            'primaryCurrencyCode' => $primaryCurrencyCode,
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+            'price' => $price,
+            'volume' => $volume,
+            'orderType' => OrderType::LIMIT_BID,
+        ]));
     }
 }
