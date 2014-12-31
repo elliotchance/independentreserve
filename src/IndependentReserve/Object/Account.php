@@ -31,4 +31,14 @@ class Account extends AbstractObject
     {
         return $this->object->AvailableBalance;
     }
+
+    /**
+     * Currency of account.
+     * @return string
+     * @see \IndependentReserve\Currency
+     */
+    public function getCurrencyCode()
+    {
+        return $this->object->CurrencyCode;
+    }
 }

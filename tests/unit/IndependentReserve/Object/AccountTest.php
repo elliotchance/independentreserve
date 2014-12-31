@@ -5,6 +5,7 @@ namespace IndependentReserve\Object;
 use Concise\TestCase;
 use DateTime;
 use IndependentReserve\AccountStatus;
+use IndependentReserve\Currency;
 
 class AccountTest extends TestCase
 {
@@ -41,5 +42,10 @@ class AccountTest extends TestCase
     public function testFactorySetsAvailableBalance()
     {
         $this->assert($this->account->getAvailableBalance(), equals, 45.334);
+    }
+
+    public function testFactorySetsCurrencyCode()
+    {
+        $this->assert($this->account->getCurrencyCode(), equals, Currency::XBT);
     }
 }
