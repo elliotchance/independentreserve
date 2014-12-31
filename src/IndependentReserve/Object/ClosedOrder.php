@@ -59,4 +59,13 @@ class ClosedOrder extends AbstractOrder
     {
         return $this->object->PrimaryCurrencyCode;
     }
+
+    /**
+     * Secondary currency of order.
+     * @return string
+     */
+    public function getSecondaryCurrencyCode()
+    {
+        return $this->object->SecondaryCurrencyCode;
+    }
 }
