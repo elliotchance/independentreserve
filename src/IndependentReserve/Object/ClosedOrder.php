@@ -23,4 +23,14 @@ class ClosedOrder extends AbstractOrder
     {
         return $this->object->OrderGuid;
     }
+
+    /**
+     * Type of order.
+     * @return string
+     * @override
+     */
+    public function getType()
+    {
+        return $this->object->OrderType;
+    }
 }

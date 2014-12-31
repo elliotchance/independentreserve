@@ -47,4 +47,9 @@ class ClosedOrderTest extends TestCase
     {
         $this->assert($this->order->getGuid(), equals, '5c8885cd-5384-4e05-b397-9f5119353e10');
     }
+
+    public function testFactorySetsType()
+    {
+        $this->assert($this->order->getType(), equals, OrderType::MARKET_OFFER);
+    }
 }
