@@ -4,6 +4,7 @@ namespace IndependentReserve;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
+use IndependentReserve\Object\ClosedOrder;
 use IndependentReserve\Object\FxRate;
 use IndependentReserve\Object\MarketSummary;
 use IndependentReserve\Object\OpenOrder;
@@ -245,7 +246,7 @@ class Client
     }
 
     /**
-     * Retrieves a page of a specified size, with your currently Open and Partially Filled orders.
+     * Retrieves your currently Open and Partially Filled orders.
      * @param string $primaryCurrencyCode The primary currency of orders.
      * @param string $secondaryCurrencyCode The secondary currency of orders.
      * @return OpenOrder[]
@@ -325,5 +326,22 @@ class Client
         return Order::createFromObject($this->getPrivateEndpoint('CancelOrder', [
             'orderGuid' => $guid,
         ]));
+    }
+
+    /**
+     * Retrieves your Closed and Cancelled orders.
+     * @param string $primaryCurrencyCode The primary currency of orders.
+     * @param string $secondaryCurrencyCode The secondary currency of orders.
+     * @return ClosedOrder[]
+     */
+    public function getClosedOrders($primaryCurrencyCode, $secondaryCurrencyCode)
+    {
+        return new PagedIterator($this, 'GetClosedOrders', [
+            'primaryCurrencyCode' => $primaryCurrencyCode,
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+            'pageSize' => 25,
+        ], function (stdClass $object) {
+            return ClosedOrder::createFromObject($object);
+        });
     }
 }
