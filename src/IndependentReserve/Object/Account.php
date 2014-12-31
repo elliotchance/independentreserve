@@ -22,4 +22,13 @@ class Account extends AbstractObject
     {
         return $this->object->AccountStatus;
     }
+
+    /**
+     * Available balance in account to trade or withdraw.
+     * @return double
+     */
+    public function getAvailableBalance()
+    {
+        return $this->object->AvailableBalance;
+    }
 }

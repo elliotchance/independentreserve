@@ -37,4 +37,9 @@ class AccountTest extends TestCase
     {
         $this->assert($this->account->getStatus(), equals, AccountStatus::ACTIVE);
     }
+
+    public function testFactorySetsAvailableBalance()
+    {
+        $this->assert($this->account->getAvailableBalance(), equals, 45.334);
+    }
 }
