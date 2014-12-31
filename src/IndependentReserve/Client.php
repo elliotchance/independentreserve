@@ -344,4 +344,21 @@ class Client
             return ClosedOrder::createFromObject($object);
         });
     }
+
+    /**
+     * Retrieves your Closed orders which have had some or all of their outstanding volume filled.
+     * @param string $primaryCurrencyCode The primary currency of orders.
+     * @param string $secondaryCurrencyCode The secondary currency of orders.
+     * @return ClosedOrder[]
+     */
+    public function getClosedFilledOrders($primaryCurrencyCode, $secondaryCurrencyCode)
+    {
+        return new PagedIterator($this, 'GetClosedFilledOrders', [
+            'primaryCurrencyCode' => $primaryCurrencyCode,
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+            'pageSize' => 25,
+        ], function (stdClass $object) {
+            return ClosedOrder::createFromObject($object);
+        });
+    }
 }

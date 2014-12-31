@@ -96,4 +96,23 @@ class ClientIntegrationPrivateTest extends TestCase
         $this->verify($openOrders[0]->getPrimaryCurrencyCode(), equals, Currency::XBT);
         $this->verify($openOrders[0]->getSecondaryCurrencyCode(), equals, Currency::USD);
     }
+
+    public function testGetClosedFilledOrders()
+    {
+        $openOrders = $this->client->getClosedFilledOrders(Currency::XBT, Currency::USD);
+        $this->assert($openOrders, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
+
+        $this->assert(count($openOrders), equals, 1);
+        $this->assert($openOrders[0], instance_of, '\IndependentReserve\Object\ClosedOrder');
+        $this->verify($openOrders[0]->getCreatedTimestamp(), equals, new DateTime("2014-12-31 23:23:10.644226Z"));
+        $this->verify($openOrders[0]->getType(), equals, OrderType::MARKET_OFFER);
+        $this->verify($openOrders[0]->getVolume(), equals, 0.01);
+        $this->verify($openOrders[0]->getOutstanding(), equals, 0);
+        $this->verify($openOrders[0]->getPrice(), is_null);
+        $this->verify($openOrders[0]->getAveragePrice(), equals, 317.13);
+        $this->verify($openOrders[0]->getStatus(), equals, OrderStatus::FILLED);
+        $this->verify($openOrders[0]->getGuid(), equals, 'ae1e1dc4-a610-4774-9b97-c3a0b453613b');
+        $this->verify($openOrders[0]->getPrimaryCurrencyCode(), equals, Currency::XBT);
+        $this->verify($openOrders[0]->getSecondaryCurrencyCode(), equals, Currency::USD);
+    }
 }
