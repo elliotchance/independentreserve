@@ -16,6 +16,7 @@ class Account extends AbstractObject
     /**
      * Status of account.
      * @return string
+     * @see \IndependentReserve\AccountStatus
      */
     public function getStatus()
     {

@@ -4,6 +4,7 @@ namespace IndependentReserve\Object;
 
 use Concise\TestCase;
 use DateTime;
+use IndependentReserve\AccountStatus;
 
 class AccountTest extends TestCase
 {
@@ -34,6 +35,6 @@ class AccountTest extends TestCase
 
     public function testFactorySetsStatus()
     {
-        $this->assert($this->account->getStatus(), equals, 'Active');
+        $this->assert($this->account->getStatus(), equals, AccountStatus::ACTIVE);
     }
 }
