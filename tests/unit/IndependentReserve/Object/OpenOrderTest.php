@@ -72,4 +72,9 @@ class OpenOrderTest extends TestCase
     {
         $this->assert($this->order->getPrimaryCurrencyCode(), equals, 'Xbt');
     }
+
+    public function testFactorySetsSecondaryCurrencyCode()
+    {
+        $this->assert($this->order->getSecondaryCurrencyCode(), equals, 'Usd');
+    }
 }
