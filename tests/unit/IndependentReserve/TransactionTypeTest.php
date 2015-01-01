@@ -10,4 +10,9 @@ class TransactionTypeTest extends TestCase
     {
         $this->assert(TransactionType::BROKERAGE, equals, 'Brokerage');
     }
+
+    public function testTrade()
+    {
+        $this->assert(TransactionType::TRADE, equals, 'Trade');
+    }
 }

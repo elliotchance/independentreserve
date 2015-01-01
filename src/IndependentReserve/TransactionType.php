@@ -11,4 +11,6 @@ namespace IndependentReserve;
 class TransactionType
 {
     const BROKERAGE = 'Brokerage';
+
+    const TRADE = 'Trade';
 }
