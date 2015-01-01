@@ -28,4 +28,9 @@ class BitcoinDepositAddressTest extends TestCase
     {
         $this->assert($this->address->getBitcoinAddress(), equals, '12a7FbBzSGvJd36wNesAxAksLXMWm4oLUJ');
     }
+
+    public function testLastCheckedTimestampIsADateTime()
+    {
+        $this->assert($this->address->getLastCheckedTimestamp(), instance_of, '\DateTime');
+    }
 }
