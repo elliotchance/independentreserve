@@ -86,4 +86,13 @@ class Transaction extends AbstractObject
     {
         return new DateTime($this->object->SettleTimestampUtc);
     }
+
+    /**
+     * Transaction status.
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->object->Status;
+    }
 }

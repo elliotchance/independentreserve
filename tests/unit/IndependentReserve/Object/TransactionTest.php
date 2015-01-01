@@ -5,6 +5,7 @@ namespace IndependentReserve\Object;
 use Concise\TestCase;
 use DateTime;
 use IndependentReserve\Currency;
+use IndependentReserve\TransactionStatus;
 
 class TransactionTest extends TestCase
 {
@@ -87,5 +88,10 @@ class TransactionTest extends TestCase
     public function testFactorySetsSettleTimestamp()
     {
         $this->assert($this->transaction->getSettleTimestamp(), equals, new DateTime("2014-08-03T05:36:24.5532653Z"));
+    }
+
+    public function testFactorySetsStatus()
+    {
+        $this->assert($this->transaction->getStatus(), equals, TransactionStatus::CONFIRMED);
     }
 }
