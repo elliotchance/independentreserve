@@ -32,4 +32,14 @@ class FiatWithdrawalTest extends TestCase
     {
         $this->assert($this->withdrawal->getGuid(), equals, '2e9ad56c-1954-4b0f-b3d8-2ade7fad93ff');
     }
+
+    public function testFactorySetsAccountGuid()
+    {
+        $this->assert($this->withdrawal->getAccountGuid(), equals, 'eda82a84-57fe-4ce6-9ee5-45a41063ee23');
+    }
+
+    public function testFactorySetsStatus()
+    {
+        $this->assert($this->withdrawal->getStatus(), equals, 'Pending');
+    }
 }
