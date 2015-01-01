@@ -2,8 +2,6 @@
 
 namespace IndependentReserve\Object;
 
-use DateTime;
-
 class FiatWithdrawal extends AbstractTimestampedObject
 {
     /**
@@ -31,5 +29,14 @@ class FiatWithdrawal extends AbstractTimestampedObject
     public function getStatus()
     {
         return $this->object->Status;
+    }
+
+    /**
+     * Total amount being withdrawn by the user (inlcusive of any fees).
+     * @return double
+     */
+    public function getTotalWithdrawalAmount()
+    {
+        return $this->object->TotalWithdrawalAmount;
     }
 }

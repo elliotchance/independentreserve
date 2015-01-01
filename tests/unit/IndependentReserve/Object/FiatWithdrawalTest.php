@@ -53,4 +53,9 @@ class FiatWithdrawalTest extends TestCase
     {
         $this->assert($this->withdrawal->getCreatedTimestamp(), equals, new DateTime("2014-12-18T14:08:47.4032405Z"));
     }
+
+    public function testFactorySetsTotalWithdrawalAmount()
+    {
+        $this->assert($this->withdrawal->getTotalWithdrawalAmount(), equals, 50.00);
+    }
 }
