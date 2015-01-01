@@ -32,11 +32,20 @@ class FiatWithdrawal extends AbstractTimestampedObject
     }
 
     /**
-     * Total amount being withdrawn by the user (inlcusive of any fees).
+     * Total amount being withdrawn by the user (inclusive of any fees).
      * @return double
      */
     public function getTotalWithdrawalAmount()
     {
         return $this->object->TotalWithdrawalAmount;
+    }
+
+    /**
+     * Fee amount which will be taken out of the withdrawal amount.
+     * @return double
+     */
+    public function getFeeAmount()
+    {
+        return $this->object->FeeAmount;
     }
 }

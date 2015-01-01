@@ -58,4 +58,9 @@ class FiatWithdrawalTest extends TestCase
     {
         $this->assert($this->withdrawal->getTotalWithdrawalAmount(), equals, 50.00);
     }
+
+    public function testFactorySetsFeeAmount()
+    {
+        $this->assert($this->withdrawal->getFeeAmount(), equals, 20.00);
+    }
 }
