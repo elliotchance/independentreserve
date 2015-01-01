@@ -7,6 +7,8 @@ use DateTime;
 
 class ClientIntegrationPrivateTest extends TestCase
 {
+    const DAY = 86400;
+
     /**
      * @var Client
      */
@@ -170,5 +172,15 @@ class ClientIntegrationPrivateTest extends TestCase
         $this->verify($transactions[0]->getComment(), is_null);
         $this->verify($transactions[0]->getBitcoinTransactionId(), is_null);
         $this->verify($transactions[0]->getBitcoinTransactionOutputIndex(), is_null);
+    }
+
+    public function testGetBitcoinDepositAddress()
+    {
+        $address = $this->client->getBitcoinDepositAddress();
+        $this->assert($address, instance_of, '\IndependentReserve\Object\BitcoinDepositAddress');
+
+        $this->verify($address->getBitcoinAddress(), matches_regex, '/[a-zA-Z0-9]{34}/');
+        $this->verify(date, $address->getLastCheckedTimestamp(), is_after, time() - self::DAY);
+        $this->verify(date, $address->getNextUpdateTimestamp(), is_after, time() - self::DAY);
     }
 }

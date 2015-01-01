@@ -6,6 +6,7 @@ use DateTime;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
 use IndependentReserve\Object\Account;
+use IndependentReserve\Object\BitcoinDepositAddress;
 use IndependentReserve\Object\ClosedOrder;
 use IndependentReserve\Object\FxRate;
 use IndependentReserve\Object\MarketSummary;
@@ -406,5 +407,14 @@ class Client
         ], function (stdClass $object) {
             return Transaction::createFromObject($object);
         });
+    }
+
+    /**
+     * Retrieves the Bitcoin address which should be used for new Bitcoin deposits.
+     * @return BitcoinDepositAddress
+     */
+    public function getBitcoinDepositAddress()
+    {
+        return BitcoinDepositAddress::createFromObject(json_decode($this->getPrivateEndpoint('GetBitcoinDepositAddress')));
     }
 }
