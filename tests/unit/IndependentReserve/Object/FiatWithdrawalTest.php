@@ -42,4 +42,9 @@ class FiatWithdrawalTest extends TestCase
     {
         $this->assert($this->withdrawal->getStatus(), equals, 'Pending');
     }
+
+    public function testCreatedTimestampIsADateTime()
+    {
+        $this->assert($this->withdrawal->getCreatedTimestamp(), instance_of, '\DateTime');
+    }
 }
