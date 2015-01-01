@@ -83,4 +83,9 @@ class TransactionTest extends TestCase
     {
         $this->assert($this->transaction->getSettleTimestamp(), instance_of, '\DateTime');
     }
+
+    public function testFactorySetsSettleTimestamp()
+    {
+        $this->assert($this->transaction->getSettleTimestamp(), equals, new DateTime("2014-08-03T05:36:24.5532653Z"));
+    }
 }
