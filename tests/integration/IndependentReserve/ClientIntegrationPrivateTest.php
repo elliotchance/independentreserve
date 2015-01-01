@@ -183,4 +183,12 @@ class ClientIntegrationPrivateTest extends TestCase
         $this->verify(date, $address->getLastCheckedTimestamp(), is_after, time() - self::DAY);
         $this->verify(date, $address->getNextUpdateTimestamp(), is_after, time() - self::DAY);
     }
+
+    public function testRequestFiatWithdrawal()
+    {
+        $this->markTestSkipped("This will not be tested.");
+
+        $withdrawal = $this->client->requestFiatWithdrawal(Currency::USD, 100, 'My Bank');
+        $this->assert($withdrawal, instance_of, '\IndependentReserve\Object\FiatWithdrawal');
+    }
 }

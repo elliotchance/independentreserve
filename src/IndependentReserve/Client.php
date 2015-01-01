@@ -8,6 +8,7 @@ use GuzzleHttp\Message\Response;
 use IndependentReserve\Object\Account;
 use IndependentReserve\Object\BitcoinDepositAddress;
 use IndependentReserve\Object\ClosedOrder;
+use IndependentReserve\Object\FiatWithdrawal;
 use IndependentReserve\Object\FxRate;
 use IndependentReserve\Object\MarketSummary;
 use IndependentReserve\Object\OpenOrder;
@@ -415,6 +416,39 @@ class Client
      */
     public function getBitcoinDepositAddress()
     {
-        return BitcoinDepositAddress::createFromObject(json_decode($this->getPrivateEndpoint('GetBitcoinDepositAddress')));
+        $result = json_decode($this->getPrivateEndpoint('GetBitcoinDepositAddress'));
+        return BitcoinDepositAddress::createFromObject($result);
+    }
+
+    /**
+     * Creates a withdrawal request for a Fiat currency withdrawal from your Independent Reserve
+     * account to an external bank account.
+     *
+     * Withdrawals to Australian bank accounts will be converted into AUD by Independent Reserve at
+     * a competitive exchange rate. International withdrawals will be transmitted in USD, and
+     * converted into the appropriate currency by the receiving bank. Minimum withdrawal amount is
+     * USD 50.00, except where the available balance is less than this amount. In all cases, the
+     * withdrawal amount must be greater than the withdrawal fee (only applies to international
+     * withdrawals). Withdrawals are manually approved. Please allow 2-3 business days for the funds
+     * to arrive in your bank account. Withdrawals to Australian accounts are usually faster.
+     * Independent Reserve can only process withdrawals to bank accounts that match the name of the
+     * Independent Reserve account holder.
+     *
+     * @param string $secondaryCurrencyCode The Independent Reserve fiat currency account to
+     *        withdraw from (currently only USD accounts are supported).
+     * @param double $withdrawalAmount Amount of fiat currency to withdraw.
+     * @param string $withdrawalBankAccountName A pre-configured bank account you've already linked
+     *        to your Independent Reserve account.
+     * @return FiatWithdrawal
+     */
+    public function requestFiatWithdrawal($secondaryCurrencyCode, $withdrawalAmount,
+        $withdrawalBankAccountName)
+    {
+        $result = json_decode($this->getPrivateEndpoint('GetBitcoinDepositAddress', [
+            'secondaryCurrencyCode' => $secondaryCurrencyCode,
+            'withdrawalAmount' => $withdrawalAmount,
+            'withdrawalBankAccountName' => $withdrawalBankAccountName,
+        ]));
+        return FiatWithdrawal::createFromObject($result);
     }
 }
