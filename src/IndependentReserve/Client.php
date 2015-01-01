@@ -4,6 +4,7 @@ namespace IndependentReserve;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
+use IndependentReserve\Object\Account;
 use IndependentReserve\Object\ClosedOrder;
 use IndependentReserve\Object\FxRate;
 use IndependentReserve\Object\MarketSummary;
@@ -240,7 +241,7 @@ class Client
      * @param array $params
      * @return mixed
      */
-    public function getPrivateEndpoint($endpoint, array $params)
+    public function getPrivateEndpoint($endpoint, array $params = array())
     {
         return $this->getEndpoint($endpoint, $this->getSignature() + $params, 'Private', 'POST');
     }
@@ -372,5 +373,16 @@ class Client
         return Order::createFromObject(json_decode($this->getPrivateEndpoint('GetOrderDetails', [
             'orderGuid' => $guid,
         ])));
+    }
+
+    /**
+     * Retrieves information about your Independent Reserve accounts in digital and fiat currencies.
+     * @return Account[]
+     */
+    public function getAccounts()
+    {
+        return array_map(function (stdClass $object) {
+            return Account::createFromObject($object);
+        }, json_decode($this->getPrivateEndpoint('GetAccounts')));
     }
 }
