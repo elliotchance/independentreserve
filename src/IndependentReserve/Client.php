@@ -2,6 +2,7 @@
 
 namespace IndependentReserve;
 
+use DateTime;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Message\Response;
 use IndependentReserve\Object\Account;
@@ -14,6 +15,7 @@ use IndependentReserve\Object\OrderBook;
 use IndependentReserve\Object\PagedIterator;
 use IndependentReserve\Object\RecentTrades;
 use IndependentReserve\Object\TradeHistorySummary;
+use IndependentReserve\Object\Transaction;
 use stdClass;
 
 class Client
@@ -384,5 +386,25 @@ class Client
         return array_map(function (stdClass $object) {
             return Account::createFromObject($object);
         }, json_decode($this->getPrivateEndpoint('GetAccounts')));
+    }
+
+    /**
+     *
+     * @param $accountGuid Account GUID.
+     * @param DateTime $from Optional start time.
+     * @param DateTime $to Optional end time.
+     * @return Transaction[]
+     */
+    public function getTransactions($accountGuid, DateTime $from = null, DateTime $to = null)
+    {
+        $format = 'Y-m-d\TH:i:s\Z';
+        return new PagedIterator($this, 'GetTransactions', [
+            'accountGuid' => $accountGuid,
+            'fromTimestampUtc' => $from ? $from->format($format) : null,
+            'toTimestampUtc' => $to ? $to->format($format) : null,
+            'pageSize' => 25,
+        ], function (stdClass $object) {
+            return Transaction::createFromObject($object);
+        });
     }
 }

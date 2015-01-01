@@ -151,4 +151,24 @@ class ClientIntegrationPrivateTest extends TestCase
         $this->verify($accounts[1]->getCurrencyCode(), equals, Currency::USD);
         $this->verify($accounts[1]->getTotalBalance(), is_greater_than, 0);
     }
+
+    public function testGetTransactions()
+    {
+        $transactions = $this->client->getTransactions('8945c390-a31f-4044-8ed8-3a18de34cc1d',
+            new DateTime('2014-12-31T23:23:05Z'), new DateTime("2014-12-31T23:23:15Z"));
+        $this->assert($transactions, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
+
+        $this->assert(count($transactions), equals, 1);
+        $this->verify($transactions[0]->getSettleTimestamp(), equals, new DateTime("2014-12-31T23:23:10.8002381Z"));
+        $this->verify($transactions[0]->getCreatedTimestamp(), equals, new DateTime("2014-12-31T23:23:10.7846213Z"));
+        $this->verify($transactions[0]->getType(), equals, TransactionType::TRADE);
+        $this->verify($transactions[0]->getStatus(), equals, TransactionStatus::CONFIRMED);
+        $this->verify($transactions[0]->getCurrencyCode(), equals, Currency::XBT);
+        $this->verify($transactions[0]->getCredit(), is_null);
+        $this->verify($transactions[0]->getDebit(), equals, 0.01);
+        $this->verify($transactions[0]->getBalance(), is_greater_than, 0);
+        $this->verify($transactions[0]->getComment(), is_null);
+        $this->verify($transactions[0]->getBitcoinTransactionId(), is_null);
+        $this->verify($transactions[0]->getBitcoinTransactionOutputIndex(), is_null);
+    }
 }
