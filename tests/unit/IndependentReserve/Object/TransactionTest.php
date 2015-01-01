@@ -42,4 +42,9 @@ class TransationTest extends TestCase
     {
         $this->assert($this->transaction->getBitcoinTransactionId(), is_null);
     }
+
+    public function testFactorySetsBitcoinTransactionOutputIndex()
+    {
+        $this->assert($this->transaction->getBitcoinTransactionOutputIndex(), is_null);
+    }
 }

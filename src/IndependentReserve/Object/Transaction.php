@@ -21,4 +21,13 @@ class Transaction extends AbstractObject
     {
         return $this->object->BitcoinTransactionId;
     }
+
+    /**
+     * Related Bitcoin network transaction output index.
+     * @return string|null
+     */
+    public function getBitcoinTransactionOutputIndex()
+    {
+        return $this->object->BitcoinTransactionOutputIndex;
+    }
 }
