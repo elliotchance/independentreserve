@@ -2,6 +2,8 @@
 
 namespace IndependentReserve\Object;
 
+use DateTime;
+
 class Transaction extends AbstractObject
 {
     /**
@@ -38,5 +40,10 @@ class Transaction extends AbstractObject
     public function getComment()
     {
         return $this->object->Comment;
+    }
+
+    public function getCreatedTimestamp()
+    {
+        return new DateTime();
     }
 }

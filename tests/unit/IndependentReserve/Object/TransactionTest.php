@@ -3,9 +3,8 @@
 namespace IndependentReserve\Object;
 
 use Concise\TestCase;
-use DateTime;
 
-class TransationTest extends TestCase
+class TransactionTest extends TestCase
 {
     /**
      * @var Transaction
@@ -51,5 +50,10 @@ class TransationTest extends TestCase
     public function testFactorySetsComment()
     {
         $this->assert($this->transaction->getComment(), is_null);
+    }
+
+    public function testCreatedTimestampIsADateTime()
+    {
+        $this->assert($this->transaction->getCreatedTimestamp(), instance_of, '\DateTime');
     }
 }
