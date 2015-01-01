@@ -1,6 +1,11 @@
 language: php
 php:
   - 5.4
+  - 5.5
+matrix:
+  include:
+    - php: 5.6
+      env: PHPUNIT_OPTIONS="--coverage-clover build/logs/clover.xml"
 env:
   global:
   - secure: j6IopOzHKmOtLFfuPEenDBIyCBV+NVgqAtKbaLyVePqfwsoeYi61W8ELm98V3A+3VGSLCJCBjSt05NQq/7qz+VkXx8It73xxP36JhbRKVsgjOKwlx2eRU0sdCmWUHAqjqyfiUItz+YN73EsmmUqGEKseWTJGBO0tEdQZYtGl+wo=
@@ -10,7 +15,7 @@ install:
   - composer install
 
 script:
-  - vendor/bin/concise --ci --coverage-clover build/logs/clover.xml
+  - vendor/bin/concise --ci $PHPUNIT_OPTIONS
 
 after_script:
   - "if [[ -f build/logs/clover.xml ]] ; then php vendor/bin/coveralls -v; fi"
