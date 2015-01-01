@@ -4,7 +4,7 @@ namespace IndependentReserve\Object;
 
 use Closure;
 use Elliotchance\Iterator\AbstractPagedIterator;
-use IndependentReserve\Client;
+use IndependentReserve\PrivateClient;
 
 class PagedIterator extends AbstractPagedIterator
 {
@@ -14,7 +14,7 @@ class PagedIterator extends AbstractPagedIterator
     protected $totalSize = -1;
 
     /**
-     * @var Client
+     * @var PrivateClient
      */
     protected $client;
 
@@ -34,12 +34,12 @@ class PagedIterator extends AbstractPagedIterator
     protected $translator;
 
     /**
-     * @param Client $client
+     * @param PrivateClient $client
      * @param string $endPoint
      * @param array $params
      * @param Closure $translator
      */
-    public function __construct(Client $client, $endPoint, array $params, Closure $translator)
+    public function __construct(PrivateClient $client, $endPoint, array $params, Closure $translator)
     {
         $this->client = $client;
         $this->endPoint = $endPoint;

@@ -30,7 +30,7 @@ Private APIs
 All private APIs are available. You must use your API key and secret to access them:
 
 ```php
-use IndependentReserve\PublicClient;
+use IndependentReserve\PrivateClient;
 use IndependentReserve\Currency;
 
 $client = new PrivateClient('api_key', 'api_secret');
@@ -39,6 +39,8 @@ echo $address->getBitcoinAddress();
 
 // 12a7FbBzSGvJd36wNesAxAksLXMWm4oLUJ
 ```
+
+View all of the private APIs at https://www.independentreserve.com/API#private
 
 All of the public API methods are accessible through the `PrivateClient` as well:
 
@@ -49,7 +51,7 @@ $marketSummary = $client->getMarketSummary(Currency::XBT, Currency::USD);
 
 ### Paging Results
 
-Some of the APIs return their results as a paged calls (25 items at a time), you do not need to
+Some of the APIs return their results as paged calls (25 items at a time), you do not need to
 worry about this because these APIs use
 [elliotchance/iterator](https://github.com/elliotchance/iterator) which will handle all the paged
 requests for you on demand, you may use all results as an active array:
