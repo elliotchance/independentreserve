@@ -42,8 +42,12 @@ class Transaction extends AbstractObject
         return $this->object->Comment;
     }
 
+    /**
+     * UTC created timestamp of transaction.
+     * @return DateTime
+     */
     public function getCreatedTimestamp()
     {
-        return new DateTime();
+        return new DateTime($this->object->CreatedTimestampUtc);
     }
 }
