@@ -30,4 +30,13 @@ class Transaction extends AbstractObject
     {
         return $this->object->BitcoinTransactionOutputIndex;
     }
+
+    /**
+     * Comments related to transaction.
+     * @return string|null
+     */
+    public function getComment()
+    {
+        return $this->object->Comment;
+    }
 }

@@ -47,4 +47,9 @@ class TransationTest extends TestCase
     {
         $this->assert($this->transaction->getBitcoinTransactionOutputIndex(), is_null);
     }
+
+    public function testFactorySetsComment()
+    {
+        $this->assert($this->transaction->getComment(), is_null);
+    }
 }
