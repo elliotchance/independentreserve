@@ -62,4 +62,9 @@ class TransactionTest extends TestCase
     {
         $this->assert($this->transaction->getCreatedTimestamp(), equals, new DateTime("2014-08-03T05:33:48.2354125Z"));
     }
+
+    public function testFactorySetsCredit()
+    {
+        $this->assert($this->transaction->getCredit(), is_null);
+    }
 }

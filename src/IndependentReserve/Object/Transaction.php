@@ -50,4 +50,13 @@ class Transaction extends AbstractObject
     {
         return new DateTime($this->object->CreatedTimestampUtc);
     }
+
+    /**
+     * Credit amount.
+     * @return double|null
+     */
+    public function getCredit()
+    {
+        return $this->object->Credit;
+    }
 }
