@@ -4,8 +4,48 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f6ab5035413a74ee85b8b25e3ef6d755",
+    "hash": "12c56b70d296fa7d6f68f24df158f295",
     "packages": [
+        {
+            "name": "elliotchance/iterator",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elliotchance/iterator.git",
+                "reference": "00dccc33ecb0a30b0edf395e270882d85f373d3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elliotchance/iterator/zipball/00dccc33ecb0a30b0edf395e270882d85f373d3b",
+                "reference": "00dccc33ecb0a30b0edf395e270882d85f373d3b",
+                "shasum": ""
+            },
+            "require-dev": {
+                "elliotchance/concise": "~1.7",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": [
+                        "tests/",
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elliot Chance",
+                    "email": "elliotchance@gmail.com"
+                }
+            ],
+            "description": "Iterator builders for PHP",
+            "time": "2014-12-30 01:22:13"
+        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "5.1.0",

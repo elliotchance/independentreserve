@@ -11,10 +11,10 @@ use IndependentReserve\Object\RecentTrades;
 use IndependentReserve\Object\TradeHistorySummary;
 use stdClass;
 
-class Client
+class PublicClient
 {
     /**
-     * @var Client
+     * @var GuzzleClient
      */
     protected $client;
 
@@ -38,12 +38,23 @@ class Client
     /**
      * @param string $endpoint The public endpoint name.
      * @param array $params Optional named parameters.
+     * @param string $visibility `Public` or `Private`.
+     * @param string $method
      * @return mixed
      */
-    protected function getEndpoint($endpoint, array $params = array())
+    public function getEndpoint($endpoint, array $params = array(), $visibility = 'Public',
+        $method = 'GET')
     {
-        $query = http_build_query($params);
-        return $this->get("https://api.independentreserve.com/Public/$endpoint?$query");
+        $url = "https://api.independentreserve.com/$visibility/$endpoint";
+        if ('GET' === $method) {
+            $query = http_build_query($params);
+            return $this->get("$url?$query");
+        }
+
+        /** @var \GuzzleHttp\Message\Response $response */
+        /** @noinspection PhpVoidFunctionResultUsedInspection */
+        $response = $this->client->post($url, [ 'json' => $params ]);
+        return $response->getBody()->getContents();
     }
 
     /**

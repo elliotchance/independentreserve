@@ -2,10 +2,9 @@
 
 namespace IndependentReserve\Object;
 
-use DateTime;
 use stdClass;
 
-class RecentTrades extends AbstractObject
+class RecentTrades extends AbstractTimestampedObject
 {
     /**
      * The primary currency being shown.
@@ -23,15 +22,6 @@ class RecentTrades extends AbstractObject
     public function getSecondaryCurrencyCode()
     {
         return $this->object->SecondaryCurrencyCode;
-    }
-
-    /**
-     * UTC timestamp of when the data was generated.
-     * @return DateTime
-     */
-    public function getCreatedTimestamp()
-    {
-        return new DateTime($this->object->CreatedTimestampUtc);
     }
 
     /**

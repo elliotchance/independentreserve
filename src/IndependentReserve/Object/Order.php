@@ -2,29 +2,32 @@
 
 namespace IndependentReserve\Object;
 
-class Order extends AbstractObject
+class Order extends AbstractOrder
 {
     /**
-     * @return string
+     * The amount of funds reserved in your account by this order.
+     * @return double
      */
-    public function getOrderType()
+    public function getReservedAmount()
     {
-        return $this->object->OrderType;
+        return $this->object->ReservedAmount;
     }
 
     /**
+     * Volume already filled on this order.
      * @return double
      */
-    public function getPrice()
+    public function getVolumeFilled()
     {
-        return $this->object->Price;
+        return $this->object->VolumeFilled;
     }
 
     /**
+     * The original volume ordered.
      * @return double
      */
-    public function getVolume()
+    public function getVolumeOrdered()
     {
-        return $this->object->Volume;
+        return $this->object->VolumeOrdered;
     }
 }

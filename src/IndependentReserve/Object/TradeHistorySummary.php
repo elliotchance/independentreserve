@@ -2,20 +2,10 @@
 
 namespace IndependentReserve\Object;
 
-use DateTime;
 use stdClass;
 
-class TradeHistorySummary extends AbstractObject
+class TradeHistorySummary extends AbstractTimestampedObject
 {
-    /**
-     * UTC timestamp of when the data was generated.
-     * @return DateTime
-     */
-    public function getCreatedTimestamp()
-    {
-        return new DateTime($this->object->CreatedTimestampUtc);
-    }
-
     /**
      * The primary currency being shown.
      * @return string

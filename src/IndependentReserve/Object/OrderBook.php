@@ -2,20 +2,10 @@
 
 namespace IndependentReserve\Object;
 
-use DateTime;
 use stdClass;
 
-class OrderBook extends AbstractObject
+class OrderBook extends AbstractTimestampedObject
 {
-    /**
-     * UTC timestamp of when the order book was generated.
-     * @return DateTime
-     */
-    public function getCreatedTimestamp()
-    {
-        return new DateTime($this->object->CreatedTimestampUtc);
-    }
-
     /**
      * The primary currency being shown.
      * @return string
@@ -35,7 +25,7 @@ class OrderBook extends AbstractObject
     }
 
     /**
-     * @return array
+     * @return SimpleOrder[]
      */
     public function getBuyOrders()
     {
@@ -43,7 +33,7 @@ class OrderBook extends AbstractObject
     }
 
     /**
-     * @return array
+     * @return SimpleOrder[]
      */
     public function getSellOrders()
     {
@@ -52,7 +42,7 @@ class OrderBook extends AbstractObject
 
     /**
      * @param array $orders
-     * @return array
+     * @return SimpleOrder[]
      */
     protected function generateOrders(array $orders)
     {

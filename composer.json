@@ -18,7 +18,8 @@
     ],
     "require": {
         "php": ">=5.4",
-        "guzzlehttp/guzzle": "~5.1"
+        "guzzlehttp/guzzle": "~5.1",
+        "elliotchance/iterator": "~1.0"
     },
     "require-dev": {
         "elliotchance/concise": "~1.7",
