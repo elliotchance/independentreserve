@@ -4,6 +4,7 @@ namespace IndependentReserve\Object;
 
 use Concise\TestCase;
 use DateTime;
+use IndependentReserve\Currency;
 
 class FiatWithdrawalTest extends TestCase
 {
@@ -62,5 +63,10 @@ class FiatWithdrawalTest extends TestCase
     public function testFactorySetsFeeAmount()
     {
         $this->assert($this->withdrawal->getFeeAmount(), equals, 20.00);
+    }
+
+    public function testFactorySetsCurrency()
+    {
+        $this->assert($this->withdrawal->getCurrency(), equals, Currency::USD);
     }
 }

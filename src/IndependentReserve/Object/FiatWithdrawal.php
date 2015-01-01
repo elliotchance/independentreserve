@@ -48,4 +48,13 @@ class FiatWithdrawal extends AbstractTimestampedObject
     {
         return $this->object->FeeAmount;
     }
+
+    /**
+     * Currency being withdrawn.
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->object->Currency;
+    }
 }
