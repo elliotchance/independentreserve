@@ -19,4 +19,9 @@ class BitcoinDepositAddress extends AbstractObject
     {
         return new DateTime();
     }
+
+    public function getNextUpdateTimestamp()
+    {
+        return new DateTime();
+    }
 }
