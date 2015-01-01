@@ -52,15 +52,25 @@ class ClientIntegrationPrivateTest extends TestCase
         $openOrders = $this->client->getOpenOrders(Currency::XBT, Currency::USD);
         $this->assert($openOrders, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
 
-        $this->assert(count($openOrders), equals, 1);
-        $this->verify($openOrders[0]->getCreatedTimestamp(), equals, new DateTime("2014-12-30T23:02:27.0640799Z"));
-        $this->verify($openOrders[0]->getType(), equals, OrderType::LIMIT_OFFER);
-        $this->verify($openOrders[0]->getVolume(), equals, 0.01);
-        $this->verify($openOrders[0]->getOutstanding(), is_greater_than, 0);
-        $this->verify($openOrders[0]->getPrice(), is_greater_than, 0);
-        $this->verify($openOrders[0]->getGuid(), matches_regex, '/[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}/');
-        $this->verify($openOrders[0]->getPrimaryCurrencyCode(), equals, Currency::XBT);
-        $this->verify($openOrders[0]->getSecondaryCurrencyCode(), equals, Currency::USD);
+        $this->assert(count($openOrders), is_greater_than, 0);
+        $found = false;
+        foreach ($openOrders as $order) {
+            if ($order->getGuid() != '32011786-913f-4ed6-84be-5ba2387a3f7b') {
+                continue;
+            }
+
+            $this->verify($order->getCreatedTimestamp(), equals, new DateTime("2014-12-30T23:02:27.0640799Z"));
+            $this->verify($order->getType(), equals, OrderType::LIMIT_OFFER);
+            $this->verify($order->getVolume(), equals, 0.01);
+            $this->verify($order->getOutstanding(), is_greater_than, 0);
+            $this->verify($order->getPrice(), is_greater_than, 0);
+            $this->verify($order->getGuid(), matches_regex, '/[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}/');
+            $this->verify($order->getPrimaryCurrencyCode(), equals, Currency::XBT);
+            $this->verify($order->getSecondaryCurrencyCode(), equals, Currency::USD);
+            $found = true;
+        }
+
+        $this->assert($found);
     }
 
     public function testPlaceMarketOrder()
@@ -81,21 +91,31 @@ class ClientIntegrationPrivateTest extends TestCase
 
     public function testGetClosedOrders()
     {
-        $openOrders = $this->client->getClosedOrders(Currency::XBT, Currency::USD);
-        $this->assert($openOrders, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
+        $closedOrders = $this->client->getClosedOrders(Currency::XBT, Currency::USD);
+        $this->assert($closedOrders, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
 
-        $this->assert(count($openOrders), is_greater_than, 1);
-        $this->assert($openOrders[0], instance_of, '\IndependentReserve\Object\ClosedOrder');
-        $this->verify($openOrders[0]->getCreatedTimestamp(), equals, new DateTime("2014-12-31T03:49:35.9371341Z"));
-        $this->verify($openOrders[0]->getType(), equals, OrderType::LIMIT_OFFER);
-        $this->verify($openOrders[0]->getVolume(), equals, 0.01);
-        $this->verify($openOrders[0]->getOutstanding(), equals, 0.01);
-        $this->verify($openOrders[0]->getPrice(), equals, 1000);
-        $this->verify($openOrders[0]->getAveragePrice(), is_null);
-        $this->verify($openOrders[0]->getStatus(), equals, OrderStatus::CANCELLED);
-        $this->verify($openOrders[0]->getGuid(), equals, '16da13cf-9cae-4121-aa28-2b4f48060cf5');
-        $this->verify($openOrders[0]->getPrimaryCurrencyCode(), equals, Currency::XBT);
-        $this->verify($openOrders[0]->getSecondaryCurrencyCode(), equals, Currency::USD);
+        $this->assert(count($closedOrders), is_greater_than, 1);
+        $found = false;
+        foreach ($closedOrders as $order) {
+            if ($order->getGuid() != '16da13cf-9cae-4121-aa28-2b4f48060cf5') {
+                continue;
+            }
+
+            $this->assert($order, instance_of, '\IndependentReserve\Object\ClosedOrder');
+            $this->verify($order->getCreatedTimestamp(), equals, new DateTime("2014-12-31T03:49:35.9371341Z"));
+            $this->verify($order->getType(), equals, OrderType::LIMIT_OFFER);
+            $this->verify($order->getVolume(), equals, 0.01);
+            $this->verify($order->getOutstanding(), equals, 0.01);
+            $this->verify($order->getPrice(), equals, 1000);
+            $this->verify($order->getAveragePrice(), is_null);
+            $this->verify($order->getStatus(), equals, OrderStatus::CANCELLED);
+            $this->verify($order->getGuid(), equals, '16da13cf-9cae-4121-aa28-2b4f48060cf5');
+            $this->verify($order->getPrimaryCurrencyCode(), equals, Currency::XBT);
+            $this->verify($order->getSecondaryCurrencyCode(), equals, Currency::USD);
+            $found = true;
+        }
+
+        $this->assert($found);
     }
 
     public function testGetClosedFilledOrders()

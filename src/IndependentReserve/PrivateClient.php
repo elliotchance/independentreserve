@@ -32,7 +32,7 @@ class PrivateClient extends PublicClient
      */
     public function __construct($apiKey, $apiSecret)
     {
-        $this->client = new GuzzleClient();
+        parent::__construct();
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
     }

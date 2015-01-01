@@ -18,6 +18,11 @@ class PublicClient
      */
     protected $client;
 
+    public function __construct()
+    {
+        $this->client = new GuzzleClient();
+    }
+
     /**
      * @param string $url
      * @return mixed
