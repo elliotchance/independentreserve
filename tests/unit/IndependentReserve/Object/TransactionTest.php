@@ -78,4 +78,9 @@ class TransactionTest extends TestCase
     {
         $this->assert($this->transaction->getDebit(), equals, 6.98);
     }
+
+    public function testSettleTimestampIsADateTime()
+    {
+        $this->assert($this->transaction->getSettleTimestamp(), instance_of, '\DateTime');
+    }
 }

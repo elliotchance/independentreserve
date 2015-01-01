@@ -77,4 +77,13 @@ class Transaction extends AbstractObject
     {
         return $this->object->Debit;
     }
+
+    /**
+     * UTC settlement timestamp.
+     * @return DateTime
+     */
+    public function getSettleTimestamp()
+    {
+        return new DateTime($this->object->SettleTimestampUtc);
+    }
 }
