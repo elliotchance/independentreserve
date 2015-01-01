@@ -3,6 +3,7 @@
 namespace IndependentReserve\Object;
 
 use Concise\TestCase;
+use DateTime;
 
 class FiatWithdrawalTest extends TestCase
 {
@@ -46,5 +47,10 @@ class FiatWithdrawalTest extends TestCase
     public function testCreatedTimestampIsADateTime()
     {
         $this->assert($this->withdrawal->getCreatedTimestamp(), instance_of, '\DateTime');
+    }
+
+    public function testFactorySetsCreatedTimestamp()
+    {
+        $this->assert($this->withdrawal->getCreatedTimestamp(), equals, new DateTime("2014-12-18T14:08:47.4032405Z"));
     }
 }

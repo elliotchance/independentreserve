@@ -4,7 +4,7 @@ namespace IndependentReserve\Object;
 
 use DateTime;
 
-class FiatWithdrawal extends AbstractObject
+class FiatWithdrawal extends AbstractTimestampedObject
 {
     /**
      * Unique identifier of this request.
@@ -31,14 +31,5 @@ class FiatWithdrawal extends AbstractObject
     public function getStatus()
     {
         return $this->object->Status;
-    }
-
-    /**
-     * Timestamp in UTC when fiat withdrawal request was created.
-     * @return DateTime
-     */
-    public function getCreatedTimestamp()
-    {
-        return new DateTime();
     }
 }
