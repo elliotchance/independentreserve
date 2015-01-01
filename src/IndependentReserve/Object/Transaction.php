@@ -68,4 +68,13 @@ class Transaction extends AbstractObject
     {
         return $this->object->CurrencyCode;
     }
+
+    /**
+     * Debit amount
+     * @return double
+     */
+    public function getDebit()
+    {
+        return $this->object->Debit;
+    }
 }

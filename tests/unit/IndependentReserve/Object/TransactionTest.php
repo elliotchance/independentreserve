@@ -73,4 +73,9 @@ class TransactionTest extends TestCase
     {
         $this->assert($this->transaction->getCurrencyCode(), equals, Currency::USD);
     }
+
+    public function testFactorySetsDebit()
+    {
+        $this->assert($this->transaction->getDebit(), equals, 6.98);
+    }
 }
