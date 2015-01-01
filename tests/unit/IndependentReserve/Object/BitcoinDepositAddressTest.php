@@ -44,4 +44,9 @@ class BitcoinDepositAddressTest extends TestCase
     {
         $this->assert($this->address->getLastCheckedTimestamp(), equals, new DateTime('2014-05-05T09:35:22.4032405Z'));
     }
+
+    public function testFactorySetsNextUpdateTimestamp()
+    {
+        $this->assert($this->address->getNextUpdateTimestamp(), equals, new DateTime('2014-05-05T09:45:22.4032405Z'));
+    }
 }
