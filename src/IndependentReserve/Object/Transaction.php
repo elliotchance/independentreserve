@@ -12,4 +12,13 @@ class Transaction extends AbstractObject
     {
         return $this->object->Balance;
     }
+
+    /**
+     * Related Bitcoin network transaction.
+     * @return string|null
+     */
+    public function getBitcoinTransactionId()
+    {
+        return $this->object->BitcoinTransactionId;
+    }
 }

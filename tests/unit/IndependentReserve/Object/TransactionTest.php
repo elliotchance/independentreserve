@@ -37,4 +37,9 @@ class TransationTest extends TestCase
     {
         $this->assert($this->transaction->getBalance(), equals, 199954.27);
     }
+
+    public function testFactorySetsBitcoinTransactionId()
+    {
+        $this->assert($this->transaction->getBitcoinTransactionId(), is_null);
+    }
 }
