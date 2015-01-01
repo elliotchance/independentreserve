@@ -7,14 +7,14 @@ use Concise\TestCase;
 class ClientIntegrationPublicTest extends TestCase
 {
     /**
-     * @var Client
+     * @var PublicClient
      */
     protected $client;
 
     public function setUp()
     {
         parent::setUp();
-        $this->client = new Client();
+        $this->client = new PublicClient();
     }
 
     public function testGetValidPrimaryCurrencyCodes()

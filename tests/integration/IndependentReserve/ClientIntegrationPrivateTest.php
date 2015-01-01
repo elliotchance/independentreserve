@@ -10,7 +10,7 @@ class ClientIntegrationPrivateTest extends TestCase
     const DAY = 86400;
 
     /**
-     * @var Client
+     * @var PrivateClient
      */
     protected $client;
 
@@ -36,7 +36,7 @@ class ClientIntegrationPrivateTest extends TestCase
     {
         parent::setUp();
         $config = $this->getConfig();
-        $this->client = new Client($config['API_KEY'], $config['API_SECRET']);
+        $this->client = new PrivateClient($config['API_KEY'], $config['API_SECRET']);
     }
 
     public function testPlaceLimitOrder()
@@ -84,7 +84,7 @@ class ClientIntegrationPrivateTest extends TestCase
         $openOrders = $this->client->getClosedOrders(Currency::XBT, Currency::USD);
         $this->assert($openOrders, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
 
-        $this->assert(count($openOrders), equals, 1);
+        $this->assert(count($openOrders), is_greater_than, 1);
         $this->assert($openOrders[0], instance_of, '\IndependentReserve\Object\ClosedOrder');
         $this->verify($openOrders[0]->getCreatedTimestamp(), equals, new DateTime("2014-12-31T03:49:35.9371341Z"));
         $this->verify($openOrders[0]->getType(), equals, OrderType::LIMIT_OFFER);
