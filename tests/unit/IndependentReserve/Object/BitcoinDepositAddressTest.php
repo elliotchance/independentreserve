@@ -3,6 +3,7 @@
 namespace IndependentReserve\Object;
 
 use Concise\TestCase;
+use DateTime;
 
 class BitcoinDepositAddressTest extends TestCase
 {
@@ -37,5 +38,10 @@ class BitcoinDepositAddressTest extends TestCase
     public function testNextUpdateTimestampIsADateTime()
     {
         $this->assert($this->address->getNextUpdateTimestamp(), instance_of, '\DateTime');
+    }
+
+    public function testFactorySetsLastCheckedTimestamp()
+    {
+        $this->assert($this->address->getLastCheckedTimestamp(), equals, new DateTime('2014-05-05T09:35:22.4032405Z'));
     }
 }

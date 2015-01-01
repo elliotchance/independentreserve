@@ -17,7 +17,7 @@ class BitcoinDepositAddress extends AbstractObject
 
     public function getLastCheckedTimestamp()
     {
-        return new DateTime();
+        return new DateTime($this->object->LastCheckedTimestampUtc);
     }
 
     public function getNextUpdateTimestamp()
