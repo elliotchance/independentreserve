@@ -95,4 +95,13 @@ class Transaction extends AbstractObject
     {
         return $this->object->Status;
     }
+
+    /**
+     * Transaction type.
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->object->Type;
+    }
 }

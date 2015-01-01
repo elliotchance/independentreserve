@@ -6,6 +6,7 @@ use Concise\TestCase;
 use DateTime;
 use IndependentReserve\Currency;
 use IndependentReserve\TransactionStatus;
+use IndependentReserve\TransactionType;
 
 class TransactionTest extends TestCase
 {
@@ -93,5 +94,10 @@ class TransactionTest extends TestCase
     public function testFactorySetsStatus()
     {
         $this->assert($this->transaction->getStatus(), equals, TransactionStatus::CONFIRMED);
+    }
+
+    public function testFactorySetsType()
+    {
+        $this->assert($this->transaction->getType(), equals, TransactionType::BROKERAGE);
     }
 }
