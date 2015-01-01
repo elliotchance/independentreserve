@@ -59,4 +59,13 @@ class Transaction extends AbstractObject
     {
         return $this->object->Credit;
     }
+
+    /**
+     * Currency of account this transaction relates to.
+     * @return string
+     */
+    public function getCurrencyCode()
+    {
+        return $this->object->CurrencyCode;
+    }
 }

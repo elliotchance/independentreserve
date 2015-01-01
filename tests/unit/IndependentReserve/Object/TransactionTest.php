@@ -4,6 +4,7 @@ namespace IndependentReserve\Object;
 
 use Concise\TestCase;
 use DateTime;
+use IndependentReserve\Currency;
 
 class TransactionTest extends TestCase
 {
@@ -66,5 +67,10 @@ class TransactionTest extends TestCase
     public function testFactorySetsCredit()
     {
         $this->assert($this->transaction->getCredit(), is_null);
+    }
+
+    public function testFactorySetsCurrencyCode()
+    {
+        $this->assert($this->transaction->getCurrencyCode(), equals, Currency::USD);
     }
 }
