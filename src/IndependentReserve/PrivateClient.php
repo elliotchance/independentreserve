@@ -3,7 +3,6 @@
 namespace IndependentReserve;
 
 use DateTime;
-use GuzzleHttp\Client as GuzzleClient;
 use IndependentReserve\Object\Account;
 use IndependentReserve\Object\BitcoinDepositAddress;
 use IndependentReserve\Object\ClosedOrder;

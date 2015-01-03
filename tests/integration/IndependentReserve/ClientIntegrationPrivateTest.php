@@ -94,7 +94,7 @@ class ClientIntegrationPrivateTest extends TestCase
         $closedOrders = $this->client->getClosedOrders(Currency::XBT, Currency::USD);
         $this->assert($closedOrders, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
 
-        $this->assert(count($closedOrders), is_greater_than, 1);
+        $this->assert(count($closedOrders), is_greater_than, 0);
         $found = false;
         foreach ($closedOrders as $order) {
             if ($order->getGuid() != '16da13cf-9cae-4121-aa28-2b4f48060cf5') {
