@@ -2,6 +2,7 @@ IndependentReserve
 ==================
 
 [![Build Status](https://travis-ci.org/elliotchance/independentreserve.svg?branch=master)](https://travis-ci.org/elliotchance/independentreserve)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/elliotchance/independentreserve/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/elliotchance/independentreserve/?branch=master)
 [![Coverage Status](https://img.shields.io/coveralls/elliotchance/independentreserve.svg)](https://coveralls.io/r/elliotchance/independentreserve)
 [![Latest Stable Version](https://poser.pugx.org/elliotchance/independentreserve/v/stable.svg)](https://packagist.org/packages/elliotchance/independentreserve)
 [![Total Downloads](https://poser.pugx.org/elliotchance/independentreserve/downloads.svg)](https://packagist.org/packages/elliotchance/independentreserve)
