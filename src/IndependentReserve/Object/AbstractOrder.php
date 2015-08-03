@@ -14,6 +14,15 @@ abstract class AbstractOrder extends AbstractObject
     {
         return $this->object->Price;
     }
+    
+    /**
+     * Volume ordered.
+     * @return double
+     */
+    public function getVolume()
+    {
+        return $this->object->Volume;
+    }
 
     /**
      * Type of order.
