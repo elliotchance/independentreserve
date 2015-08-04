@@ -184,7 +184,7 @@ class ClientIntegrationPrivateTest extends TestCase
             $this->assert($account, instance_of, '\IndependentReserve\Object\Account');
             $this->verify($account->getGuid(), matches_regex, '/[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}/');
             $this->verify($account->getAvailableBalance(), is_numeric);
-            $this->verify(strlen($account), equals, 3);
+            $this->verify(strlen($account->getCurrencyCode()), equals, 3);
             $this->verify($account->getTotalBalance(), is_numeric);
         }
     }
