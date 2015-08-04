@@ -91,6 +91,11 @@ class ClientIntegrationPrivateTest extends TestCase
 
     public function testGetClosedOrders()
     {
+        $this->markTestSkipped(
+            'Unfortunately the closed orders expire after a while so it ' .
+            'makes this test brittle'
+        );
+
         $closedOrders = $this->client->getClosedOrders(Currency::XBT, Currency::USD);
         $this->assert($closedOrders, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
 
@@ -120,6 +125,11 @@ class ClientIntegrationPrivateTest extends TestCase
 
     public function testGetClosedFilledOrders()
     {
+        $this->markTestSkipped(
+            'Unfortunately the closed orders expire after a while so it ' .
+            'makes this test brittle'
+        );
+        
         $closedOrders = $this->client->getClosedFilledOrders(Currency::XBT, Currency::USD);
         $this->assert($closedOrders, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
 
