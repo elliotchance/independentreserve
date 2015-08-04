@@ -178,20 +178,15 @@ class ClientIntegrationPrivateTest extends TestCase
     {
         $accounts = $this->client->getAccounts();
 
-        $this->assert(count($accounts), equals, 4);
-        $this->assert($accounts[0], instance_of, '\IndependentReserve\Object\Account');
-        $this->verify($accounts[0]->getGuid(), matches_regex, '/[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}/');
-        $this->verify($accounts[0]->getStatus(), equals, AccountStatus::ACTIVE);
-        $this->verify($accounts[0]->getAvailableBalance(), is_greater_than, 0);
-        $this->verify($accounts[0]->getCurrencyCode(), equals, Currency::XBT);
-        $this->verify($accounts[0]->getTotalBalance(), is_greater_than, 0);
+        $this->assert(count($accounts), is_greater_than, 0);
 
-        $this->assert($accounts[1], instance_of, '\IndependentReserve\Object\Account');
-        $this->verify($accounts[1]->getGuid(), matches_regex, '/[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}/');
-        $this->verify($accounts[1]->getStatus(), equals, AccountStatus::ACTIVE);
-        $this->verify($accounts[1]->getAvailableBalance(), is_greater_than, 0);
-        $this->verify($accounts[1]->getCurrencyCode(), equals, Currency::USD);
-        $this->verify($accounts[1]->getTotalBalance(), is_greater_than, 0);
+        foreach ($accounts as $account) {
+            $this->assert($account, instance_of, '\IndependentReserve\Object\Account');
+            $this->verify($account->getGuid(), matches_regex, '/[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}/');
+            $this->verify($account->getAvailableBalance(), is_numeric);
+            $this->verify(strlen($account), equals, 3);
+            $this->verify($account->getTotalBalance(), is_numeric);
+        }
     }
 
     public function testGetTransactions()
