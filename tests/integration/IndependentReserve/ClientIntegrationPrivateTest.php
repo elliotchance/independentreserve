@@ -178,7 +178,7 @@ class ClientIntegrationPrivateTest extends TestCase
     {
         $accounts = $this->client->getAccounts();
 
-        $this->assert(count($accounts), equals, 2);
+        $this->assert(count($accounts), equals, 4);
         $this->assert($accounts[0], instance_of, '\IndependentReserve\Object\Account');
         $this->verify($accounts[0]->getGuid(), matches_regex, '/[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}/');
         $this->verify($accounts[0]->getStatus(), equals, AccountStatus::ACTIVE);
