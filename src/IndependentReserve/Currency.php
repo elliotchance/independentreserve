@@ -18,4 +18,9 @@ class Currency
      * Australian Dollar.
      */
     const AUD = 'Aud';
+
+    /**
+     * New Zealand Dollar.
+     */
+    const NZD = 'Nzd';
 }

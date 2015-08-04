@@ -47,7 +47,7 @@ class OrderBook extends AbstractTimestampedObject
     protected function generateOrders(array $orders)
     {
         return array_map(function (stdClass $object) {
-            return Order::createFromObject($object);
+            return SimpleOrder::createFromObject($object);
         }, $orders);
     }
 }

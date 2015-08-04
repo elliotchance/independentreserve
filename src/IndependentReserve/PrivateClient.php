@@ -204,7 +204,6 @@ class PrivateClient extends PublicClient
     }
 
     /**
-     *
      * @param $accountGuid Account GUID.
      * @param DateTime $from Optional start time.
      * @param DateTime $to Optional end time.
