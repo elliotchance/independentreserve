@@ -42,7 +42,7 @@ class PrivateClient extends PublicClient
      */
     public function getSignature()
     {
-        $nonce = sprintf('%ld', microtime(true) * 1e9);
+        $nonce = str_pad(str_replace('.', '', microtime(true)), 19, 0);
         $signature = strtoupper(hash_hmac('sha256', $nonce . $this->apiKey, $this->apiSecret));
 
         return [
@@ -97,13 +97,13 @@ class PrivateClient extends PublicClient
     public function placeLimitOrder($primaryCurrencyCode, $secondaryCurrencyCode, $orderType,
         $price, $volume)
     {
-        return Order::createFromObject($this->getPrivateEndpoint('PlaceLimitOrder', [
+        return Order::createFromObject(json_decode($this->getPrivateEndpoint('PlaceLimitOrder', [
             'primaryCurrencyCode' => $primaryCurrencyCode,
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
             'price' => $price,
             'volume' => $volume,
             'orderType' => $orderType,
-        ]));
+        ])));
     }
 
     /**
@@ -122,12 +122,12 @@ class PrivateClient extends PublicClient
     public function placeMarketOrder($primaryCurrencyCode, $secondaryCurrencyCode, $orderType,
         $volume)
     {
-        return Order::createFromObject($this->getPrivateEndpoint('PlaceMarketOrder', [
+        return Order::createFromObject(json_decode($this->getPrivateEndpoint('PlaceMarketOrder', [
             'primaryCurrencyCode' => $primaryCurrencyCode,
             'secondaryCurrencyCode' => $secondaryCurrencyCode,
             'volume' => $volume,
             'orderType' => $orderType,
-        ]));
+        ])));
     }
 
     /**
@@ -141,9 +141,9 @@ class PrivateClient extends PublicClient
      */
     public function cancelOrder($guid)
     {
-        return Order::createFromObject($this->getPrivateEndpoint('CancelOrder', [
+        return Order::createFromObject(json_decode($this->getPrivateEndpoint('CancelOrder', [
             'orderGuid' => $guid,
-        ]));
+        ])));
     }
 
     /**
