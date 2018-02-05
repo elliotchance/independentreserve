@@ -20,7 +20,7 @@ class ClientIntegrationPublicTest extends TestCase
     public function testGetValidPrimaryCurrencyCodes()
     {
         $currencyCodes = $this->client->getValidPrimaryCurrencyCodes();
-        $this->assert($currencyCodes, equals, [Currency::XBT]);
+        $this->assert($currencyCodes, equals, [Currency::XBT, Currency::ETH, Currency::BCH]);
     }
 
     public function testGetValidSecondaryCurrencyCodes()
@@ -79,7 +79,9 @@ class ClientIntegrationPublicTest extends TestCase
         $this->verify($tradeHistorySummary->getNumberOfHoursInThePastToRetrieve(), equals, 3);
         $this->verify($tradeHistorySummary->getPrimaryCurrencyCode(), equals, Currency::XBT);
         $this->verify($tradeHistorySummary->getSecondaryCurrencyCode(), equals, Currency::USD);
-        $this->verify(count($tradeHistorySummary->getHistorySummaryItems()), equals, 3);
+        // $this->verify(count($tradeHistorySummary->getHistorySummaryItems()), equals, 3); 
+        // for now IDR API returns data for every hour for past trading day, so, this number is not stable right now
+        // maybe a bug on their side
     }
 
     public function testGetRecentTrades()
