@@ -145,7 +145,7 @@ class ClientIntegrationPrivateTest extends TestCase
 
         $this->assert($order, instance_of, '\IndependentReserve\Object\Order');
         $this->verify($order->getGuid(), equals, 'ae1e1dc4-a610-4774-9b97-c3a0b453613b');
-        $this->verify($order->getCreatedTimestamp(), equals, new DateTime("2014-12-31 23:23:10.644226Z"));
+        $this->verify($order->getCreatedTimestamp()->format(DateTime::ATOM), equals, "2014-12-31T23:23:10+00:00");
         $this->verify($order->getType(), equals, OrderType::MARKET_OFFER);
         $this->verify($order->getVolumeOrdered(), equals, 0.01);
         $this->verify($order->getVolumeFilled(), equals, 0.01);
