@@ -7,10 +7,6 @@ matrix:
   include:
     - php: 5.6
       env: PHPUNIT_OPTIONS="--coverage-clover build/logs/clover.xml"
-env:
-  global:
-  - secure: j6IopOzHKmOtLFfuPEenDBIyCBV+NVgqAtKbaLyVePqfwsoeYi61W8ELm98V3A+3VGSLCJCBjSt05NQq/7qz+VkXx8It73xxP36JhbRKVsgjOKwlx2eRU0sdCmWUHAqjqyfiUItz+YN73EsmmUqGEKseWTJGBO0tEdQZYtGl+wo=
-  - secure: 0maJ+g3eBe9U9RwVZGsxlHim6gjLpMduvaKylEZxaxiZfY8S+n5XkxlXSn/Zqc13RRzbhWUXXl1+WYcpWtHG5M55LDFDnw8CJXDKCM8Ziph7rcauOob9LID20cJY99A74LRPMHyk8g0S0HFFB9YIQkHABYjNDfGSP8ChGCDsnXM=
 
 install:
   - composer install

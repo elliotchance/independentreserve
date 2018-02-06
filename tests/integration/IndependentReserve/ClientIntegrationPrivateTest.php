@@ -51,26 +51,8 @@ class ClientIntegrationPrivateTest extends TestCase
     {
         $openOrders = $this->client->getOpenOrders(Currency::XBT, Currency::USD);
         $this->assert($openOrders, instance_of, '\Elliotchance\Iterator\AbstractPagedIterator');
-
-        $this->assert(count($openOrders), is_greater_than, 0);
-        $found = false;
-        foreach ($openOrders as $order) {
-            if ($order->getGuid() != '32011786-913f-4ed6-84be-5ba2387a3f7b') {
-                continue;
-            }
-
-            $this->verify($order->getCreatedTimestamp(), equals, new DateTime("2014-12-30T23:02:27.0640799Z"));
-            $this->verify($order->getType(), equals, OrderType::LIMIT_OFFER);
-            $this->verify($order->getVolume(), equals, 0.01);
-            $this->verify($order->getOutstanding(), is_greater_than, 0);
-            $this->verify($order->getPrice(), is_greater_than, 0);
-            $this->verify($order->getGuid(), matches_regex, '/[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}/');
-            $this->verify($order->getPrimaryCurrencyCode(), equals, Currency::XBT);
-            $this->verify($order->getSecondaryCurrencyCode(), equals, Currency::USD);
-            $found = true;
-        }
-
-        $this->assert($found);
+        
+        // We cannot reliably check the number of open orders as they may change.
     }
 
     public function testPlaceMarketOrder()
@@ -163,7 +145,7 @@ class ClientIntegrationPrivateTest extends TestCase
 
         $this->assert($order, instance_of, '\IndependentReserve\Object\Order');
         $this->verify($order->getGuid(), equals, 'ae1e1dc4-a610-4774-9b97-c3a0b453613b');
-        $this->verify($order->getCreatedTimestamp(), equals, new DateTime("2014-12-31 23:23:10.644226Z"));
+        $this->verify($order->getCreatedTimestamp()->format(DateTime::ATOM), equals, "2014-12-31T23:23:10+00:00");
         $this->verify($order->getType(), equals, OrderType::MARKET_OFFER);
         $this->verify($order->getVolumeOrdered(), equals, 0.01);
         $this->verify($order->getVolumeFilled(), equals, 0.01);

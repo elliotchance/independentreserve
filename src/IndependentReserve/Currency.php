@@ -23,4 +23,14 @@ class Currency
      * New Zealand Dollar.
      */
     const NZD = 'Nzd';
+
+    /**
+     * Etherium.
+     */
+    const ETH = 'Eth';
+
+    /**
+     * Bitcoin Cash.
+     */
+    const BCH = 'Bch';
 }
