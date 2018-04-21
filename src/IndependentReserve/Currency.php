@@ -33,4 +33,9 @@ class Currency
      * Bitcoin Cash.
      */
     const BCH = 'Bch';
+
+    /**
+     * Litecoin.
+     */
+    const LTC = 'Ltc';
 }
