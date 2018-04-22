@@ -26,7 +26,6 @@ class ClientIntegrationPublicTest extends TestCase
     public function testGetValidSecondaryCurrencyCodes()
     {
         $currencyCodes = $this->client->getValidSecondaryCurrencyCodes();
-        #$this->assert($currencyCodes, has_value, Currency::USD);
         $this->assert($currencyCodes, equals, [Currency::USD, Currency::AUD, Currency::NZD]);
     }
 
