@@ -45,7 +45,7 @@ class PublicClient
     public function getEndpoint($endpoint, array $params = array(), $visibility = 'Public',
         $method = 'GET')
     {
-        $url = "https://api.independentreserve.com/$visibility/$endpoint";
+        $url = $this->getEndpointUrl($endpoint, $visibility);
         if ('GET' === $method) {
             $query = http_build_query($params);
             return $this->get("$url?$query");
@@ -55,6 +55,10 @@ class PublicClient
         /** @noinspection PhpVoidFunctionResultUsedInspection */
         $response = $this->client->post($url, [ 'json' => $params ]);
         return $response->getBody()->getContents();
+    }
+
+    public function getEndpointUrl($endpoint, $visibility) {
+        return "https://api.independentreserve.com/$visibility/$endpoint";
     }
 
     /**
