@@ -59,7 +59,7 @@ class PrivateClient extends PublicClient
         $res = $url;
         foreach ($data as $key => $value) {
             if (is_array($value)) {
-                $res .= ",$key=".array_values($value)[0]; // works only for case when array has one value. And no docs how to use for array with more then one value
+                $res .= ",$key=".implode(",",$value); // works for all arrays
             } else {
                 $res .= ",$key=$value";
             }
