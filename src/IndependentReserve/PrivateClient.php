@@ -40,10 +40,13 @@ class PrivateClient extends PublicClient
      * Get the components required to make private API calls.
      * @return array
      */
-    public function getSignature()
+    public function getSignature($url, $params)
     {
         $nonce = str_pad(str_replace('.', '', microtime(true)), 19, 0);
-        $signature = strtoupper(hash_hmac('sha256', $nonce . $this->apiKey, $this->apiSecret));
+
+        $params =  array_merge(['apiKey' => $this->apiKey, 'nonce' => $nonce], $params);
+        $strToSign = $this->mapToKeyValue($url,$params);
+        $signature = strtoupper(hash_hmac('sha256', utf8_encode($strToSign), utf8_encode($this->apiSecret)));
 
         return [
             'apiKey' => $this->apiKey,
@@ -52,6 +55,17 @@ class PrivateClient extends PublicClient
         ];
     }
 
+    private function mapToKeyValue($url, $data) {
+        $res = $url;
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $res .= ",$key=".implode(",",$value); // works for all arrays
+            } else {
+                $res .= ",$key=$value";
+            }
+        }
+        return $res;
+    }
     /**
      * Fetch a private API.
      * @param string $endpoint
@@ -60,7 +74,7 @@ class PrivateClient extends PublicClient
      */
     public function getPrivateEndpoint($endpoint, array $params = array())
     {
-        return $this->getEndpoint($endpoint, $this->getSignature() + $params, 'Private', 'POST');
+        return $this->getEndpoint($endpoint, $this->getSignature($this->getEndpointUrl($endpoint,'Private'), $params) + $params, 'Private', 'POST');
     }
 
     /**
