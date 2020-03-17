@@ -36,11 +36,6 @@ class CurrencyTest extends TestCase
         $this->assert(Currency::XRP, equals, 'Xrp');
     }
 
-    public function testXrp()
-    {
-        $this->assert(Currency::XRP, equals, 'Xrp');
-    }
-
     public function testBch()
     {
         $this->assert(Currency::BCH, equals, 'Bch');
@@ -49,11 +44,6 @@ class CurrencyTest extends TestCase
     public function testBsv()
     {
         $this->assert(Currency::BSV, equals, 'Bsv');
-    }
-
-    public function testUsdt()
-    {
-        $this->assert(Currency::USDT, equals, 'Usdt');
     }
 
     public function testUsdt()
