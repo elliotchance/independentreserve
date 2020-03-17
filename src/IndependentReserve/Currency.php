@@ -5,9 +5,9 @@ namespace IndependentReserve;
 class Currency
 {
     /**
-     * Bitcoin.
+     * Australian Dollar.
      */
-    const XBT = 'Xbt';
+    const AUD = 'Aud';
 
     /**
      * US Dollar.
@@ -15,19 +15,24 @@ class Currency
     const USD = 'Usd';
 
     /**
-     * Australian Dollar.
-     */
-    const AUD = 'Aud';
-
-    /**
      * New Zealand Dollar.
      */
     const NZD = 'Nzd';
 
     /**
-     * Etherium.
+     * Bitcoin.
+     */
+    const XBT = 'Xbt';
+
+    /**
+     * Ethereum.
      */
     const ETH = 'Eth';
+
+    /**
+     * Ripple.
+     */
+    const XRP = 'Xrp';
 
     /**
      * Bitcoin Cash.
@@ -35,7 +40,62 @@ class Currency
     const BCH = 'Bch';
 
     /**
+     * Bitcoin SV.
+     */
+    const BSV = 'Bsv';
+
+    /**
+     * Tether USD.
+     */
+    const USDT = 'Usdt';
+
+    /**
      * Litecoin.
      */
     const LTC = 'Ltc';
+
+    /**
+     * EOS.
+     */
+    const EOS = 'Eos';
+
+    /**
+     * Stellar Lumens.
+     */
+    const XLM = 'Xlm';
+
+    /**
+     * Ethereum Classic.
+     */
+    const ETC = 'Etc';
+
+    /**
+     * Basic Attention Token.
+     */
+    const BAT = 'Bat';
+
+    /**
+     * OmiseGO.
+     */
+    const OMG = 'Omg';
+
+    /**
+     * Augur.
+     */
+    const REP = 'Rep';
+
+    /**
+     * 0x.
+     */
+    const ZRX = 'Zrx';
+
+    /**
+     * Golem.
+     */
+    const GNT = 'Gnt';
+
+    /**
+     * PlayChip.
+     */
+    const PLA = 'Pla';
 }

@@ -20,13 +20,13 @@ class ClientIntegrationPublicTest extends TestCase
     public function testGetValidPrimaryCurrencyCodes()
     {
         $currencyCodes = $this->client->getValidPrimaryCurrencyCodes();
-        $this->assert($currencyCodes, equals, [Currency::XBT, Currency::ETH, Currency::BCH, Currency::LTC]);
+        $this->assert($currencyCodes, equals, [Currency::XBT, Currency::ETH, Currency::XRP, Currency::BCH, Currency::BSV, Currency::USDT, Currency::LTC, Currency::EOS, Currency::XLM, Currency::ETC, Currency::BAT, Currency::OMG, Currency::REP, Currency::ZRX, Currency::GNT, Currency::PLA]);
     }
 
     public function testGetValidSecondaryCurrencyCodes()
     {
         $currencyCodes = $this->client->getValidSecondaryCurrencyCodes();
-        $this->assert($currencyCodes, equals, [Currency::USD, Currency::AUD, Currency::NZD]);
+        $this->assert($currencyCodes, equals, [Currency::AUD, Currency::USD, Currency::NZD]);
     }
 
     public function testGetValidLimitOrderTypes()
